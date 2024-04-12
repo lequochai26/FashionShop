@@ -11,9 +11,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivityLoadAllItemsController extends MainActivityController<Void> {
+public class LoadAllItemsController extends MainActivityController<Void> {
 //    Constructors:
-    public MainActivityLoadAllItemsController(MainActivity view) {
+    public LoadAllItemsController(MainActivity view) {
         super(view);
     }
 

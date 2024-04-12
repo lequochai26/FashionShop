@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.lequochai.fashionshop.controllers.Controller;
-import org.lequochai.fashionshop.controllers.mainactivity.MainActivityLoadAllItemsController;
+import org.lequochai.fashionshop.controllers.mainactivity.LoadAllItemsController;
 import org.lequochai.fashionshop.entities.Item;
 
 import java.util.List;
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialControllers() {
-        loadAllItemsController = new MainActivityLoadAllItemsController(this);
+        loadAllItemsController = new LoadAllItemsController(this);
     }
 
 //    Methods:
