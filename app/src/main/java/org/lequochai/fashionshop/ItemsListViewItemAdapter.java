@@ -15,14 +15,14 @@ import org.lequochai.fashionshop.services.GlobalService;
 
 import java.util.List;
 
-public class ItemsListItemAdapter extends BaseAdapter {
+public class ItemsListViewItemAdapter extends BaseAdapter {
 //    Fields:
     private Context context;
     private List<Item> items;
     private LayoutInflater inflater;
 
 //    Constructors:
-    public ItemsListItemAdapter(Context context, List<Item> items) {
+    public ItemsListViewItemAdapter(Context context, List<Item> items) {
         this.items = items;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -46,7 +46,7 @@ public class ItemsListItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.activity_items_list_item, null);
+            convertView = inflater.inflate(R.layout.activity_items_list_view_item, null);
         }
 
         Item item = items.get(position);

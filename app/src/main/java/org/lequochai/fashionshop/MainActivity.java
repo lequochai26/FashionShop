@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 //    Methods:
     public void loadItems(List<Item> items) {
 //        Create adapter
-        ItemsListItemAdapter adapter = new ItemsListItemAdapter(this, items);
+        ItemsListViewItemAdapter adapter = new ItemsListViewItemAdapter(this, items);
 
 //        Set adapter for itemsListView
         itemsListView.setAdapter(adapter);
