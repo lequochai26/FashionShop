@@ -32,6 +32,7 @@ public class GlobalService {
     private ItemTypeService itemTypeService;
     private BrandService brandService;
     private OrderService orderService;
+    private CartService cartService;
 
 //    Constructors:
     private GlobalService(Context context) {
@@ -57,6 +58,7 @@ public class GlobalService {
         itemTypeService = retrofit.create(ItemTypeService.class);
         brandService = retrofit.create(BrandService.class);
         orderService = retrofit.create(OrderService.class);
+        cartService = retrofit.create(CartService.class);
     }
 
 //    Methods:
@@ -64,47 +66,27 @@ public class GlobalService {
         return itemService;
     }
 
-    public void setItemService(ItemService itemService) {
-        this.itemService = itemService;
-    }
-
     public FashionShopDBHelper getDbHelper() {
         return dbHelper;
-    }
-
-    public void setDbHelper(FashionShopDBHelper dbHelper) {
-        this.dbHelper = dbHelper;
     }
 
     public UserService getUserService() {
         return userService;
     }
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
     public ItemTypeService getItemTypeService() {
         return itemTypeService;
-    }
-
-    public void setItemTypeService(ItemTypeService itemTypeService) {
-        this.itemTypeService = itemTypeService;
     }
 
     public BrandService getBrandService() {
         return brandService;
     }
 
-    public void setBrandService(BrandService brandService) {
-        this.brandService = brandService;
-    }
-
     public OrderService getOrderService() {
         return orderService;
     }
 
-    public void setOrderService(OrderService orderService) {
-        this.orderService = orderService;
+    public CartService getCartService() {
+        return cartService;
     }
 }
