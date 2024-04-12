@@ -16,6 +16,8 @@ public class OrderBody {
 
    private String paymentMethod;
 
+   public OrderBody(){}
+
     public OrderBody(String type, Number totalPrice, String orderedBy, List<Map<String, Object>> items, String paymentMethod) {
         this.type = type;
         this.totalPrice = totalPrice;
