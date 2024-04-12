@@ -1,5 +1,7 @@
 package org.lequochai.fashionshop.entities;
 
+import java.util.List;
+
 public class User {
     //Fields:
     private String email;
@@ -10,13 +12,15 @@ public class User {
     private String address;
     private String avatar;
     private String permission;
+    private List<String> orderedOrders;
+    private List<String> createdOrders;
     private String wallet;
 
     //Constructors:
     public User() {
     }
 
-    public User(String email, String password, String fullName, boolean gender, String phoneNumber, String address, String avatar, String permission, String wallet) {
+    public User(String email, String password, String fullName, boolean gender, String phoneNumber, String address, String avatar, String permission, List<String> orderedOrders, List<String> createdOrders, String wallet) {
         this.email = email;
         this.password = password;
         this.fullName = fullName;
@@ -25,9 +29,12 @@ public class User {
         this.address = address;
         this.avatar = avatar;
         this.permission = permission;
+        this.orderedOrders = orderedOrders;
+        this.createdOrders = createdOrders;
         this.wallet = wallet;
     }
-    //Getter /setter
+
+//Getter /setter
 
     public String getEmail() {
         return email;
@@ -99,5 +106,21 @@ public class User {
 
     public void setWallet(String wallet) {
         this.wallet = wallet;
+    }
+
+    public List<String> getCreatedOrders() {
+        return createdOrders;
+    }
+
+    public void setCreatedOrders(List<String> createdOrders) {
+        this.createdOrders = createdOrders;
+    }
+
+    public List<String> getOrderedOrders() {
+        return orderedOrders;
+    }
+
+    public void setOrderedOrders(List<String> orderedOrders) {
+        this.orderedOrders = orderedOrders;
     }
 }
