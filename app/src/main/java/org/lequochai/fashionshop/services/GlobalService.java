@@ -12,6 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GlobalService {
 //    Static fields:
     private static GlobalService instance;
+    public static final String HOST = "10.0.2.2";
+    public static final String PORT = "3000";
+    public static final String HOST_HTTP = "http://" + HOST + ":" + PORT + "/";
 
 //    Static methods:
     public static GlobalService getInstance(Context context) {
@@ -43,7 +46,7 @@ public class GlobalService {
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2/")
+                .baseUrl(HOST_HTTP)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
