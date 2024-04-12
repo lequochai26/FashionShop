@@ -1,6 +1,7 @@
 package org.lequochai.fashionshop.entities;
 
 import java.util.List;
+import java.util.Map;
 
 public class Item {
 //    Innter class:
@@ -62,6 +63,38 @@ public class Item {
         }
     }
 
+    public static class Metadata {
+//        Fields:
+        private Map<String, List<String>> options;
+        private List<Map<String, Object>> mappings;
+
+//        Constructors:
+        public Metadata() {
+        }
+
+        public Metadata(Map<String, List<String>> options, List<Map<String, Object>> mappings) {
+            this.options = options;
+            this.mappings = mappings;
+        }
+
+//        Getters / setters:
+        public Map<String, List<String>> getOptions() {
+            return options;
+        }
+
+        public void setOptions(Map<String, List<String>> options) {
+            this.options = options;
+        }
+
+        public List<Map<String, Object>> getMappings() {
+            return mappings;
+        }
+
+        public void setMappings(List<Map<String, Object>> mappings) {
+            this.mappings = mappings;
+        }
+    }
+
 //    Fields:
     private String id;
     private String avatar;
@@ -75,12 +108,13 @@ public class Item {
     private Brand brand;
     private List<String> images;
     private List<String> orders;
+    private Metadata metadata;
 
 //    Constructors:
     public Item() {
     }
 
-    public Item(String id, String avatar, String name, String description, double price, double buyPrice, int amount, boolean gender, ItemType type, Brand brand, List<String> images, List<String> orders) {
+    public Item(String id, String avatar, String name, String description, double price, double buyPrice, int amount, boolean gender, ItemType type, Brand brand, List<String> images, List<String> orders, Metadata metadata) {
         this.id = id;
         this.avatar = avatar;
         this.name = name;
@@ -93,9 +127,10 @@ public class Item {
         this.brand = brand;
         this.images = images;
         this.orders = orders;
+        this.metadata = metadata;
     }
 
-//    Getters / setters:
+    //    Getters / setters:
     public String getId() {
         return id;
     }
@@ -190,5 +225,13 @@ public class Item {
 
     public void setOrders(List<String> orders) {
         this.orders = orders;
+    }
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
     }
 }
