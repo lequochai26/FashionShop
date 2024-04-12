@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.lequochai.fashionshop.controllers.Controller;
-import org.lequochai.fashionshop.controllers.MainActivityLoadAllItemsController;
+import org.lequochai.fashionshop.controllers.mainactivity.MainActivityLoadAllItemsController;
 import org.lequochai.fashionshop.entities.Item;
 
 import java.util.List;
