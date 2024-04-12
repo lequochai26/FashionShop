@@ -9,6 +9,7 @@ public class ItemType {
 
     private String name;
 
+    private List<String> item;
     //Constructor
     public ItemType(){
 
@@ -17,6 +18,7 @@ public class ItemType {
     public ItemType(String id, String name){
         this.id=id;
         this.name=name;
+        this.item=item;
     }
 
     public String getId() {
@@ -33,5 +35,13 @@ public class ItemType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<String> getItem() {
+        return item;
+    }
+
+    public void setItem(List<String> item) {
+        this.item = item;
     }
 }
