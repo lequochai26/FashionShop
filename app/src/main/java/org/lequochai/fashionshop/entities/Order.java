@@ -4,6 +4,34 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
+
+    public static  class User{
+        private String email;
+        private  String fullName;
+
+        public  User(){}
+
+        public User(String email, String fullName) {
+            this.email = email;
+            this.fullName = fullName;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getFullName() {
+            return fullName;
+        }
+
+        public void setFullName(String fullName) {
+            this.fullName = fullName;
+        }
+    }
     private String id;
     private String type;
     private Date date;
@@ -18,6 +46,7 @@ public class Order {
     public Order(){
 
     }
+
 
     public Order(String id, String type, Date date, Number totalPrince, String metadata, User createdBy, User orderedBy, List<String> orders, String status, String paymentMethod) {
         this.id = id;
