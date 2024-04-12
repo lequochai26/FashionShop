@@ -3,18 +3,20 @@ package org.lequochai.fashionshop.entities;
 public class RestCookie {
 //    Fields:
     private String cookieKey;
+    private String cookieDomain;
     private String cookieValue;
 
 //    Constructors:
     public RestCookie() {
     }
 
-    public RestCookie(String cookieKey, String cookieValue) {
+    public RestCookie(String cookieKey, String cookieDomain, String cookieValue) {
         this.cookieKey = cookieKey;
+        this.cookieDomain = cookieDomain;
         this.cookieValue = cookieValue;
     }
 
-//    Getters / setters:
+    //    Getters / setters:
     public String getCookieKey() {
         return cookieKey;
     }
@@ -29,5 +31,13 @@ public class RestCookie {
 
     public void setCookieValue(String cookieValue) {
         this.cookieValue = cookieValue;
+    }
+
+    public String getCookieDomain() {
+        return cookieDomain;
+    }
+
+    public void setCookieDomain(String cookieDomain) {
+        this.cookieDomain = cookieDomain;
     }
 }
