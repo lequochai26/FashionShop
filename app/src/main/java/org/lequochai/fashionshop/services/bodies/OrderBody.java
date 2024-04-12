@@ -9,7 +9,7 @@ public class OrderBody {
     private String id;
     private String type;
     private Date date;
-    private Number totalPrince;
+    private Number totalPrice;
     private String metadata;
     private User createdBy;
     private User orderedBy;
@@ -18,11 +18,12 @@ public class OrderBody {
     private String paymentMethod;
 
     public  OrderBody(){}
-    public OrderBody(String id, String type, Date date, Number totalPrince, String metadata, User createdBy, User orderedBy, List<String> orders, String status, String paymentMethod) {
+
+    public OrderBody(String id, String type, Date date, Number totalPrice, String metadata, User createdBy, User orderedBy, List<String> orders, String status, String paymentMethod) {
         this.id = id;
         this.type = type;
         this.date = date;
-        this.totalPrince = totalPrince;
+        this.totalPrice = totalPrice;
         this.metadata = metadata;
         this.createdBy = createdBy;
         this.orderedBy = orderedBy;
@@ -55,12 +56,12 @@ public class OrderBody {
         this.date = date;
     }
 
-    public Number getTotalPrince() {
-        return totalPrince;
+    public Number getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalPrince(Number totalPrince) {
-        this.totalPrince = totalPrince;
+    public void setTotalPrice(Number totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getMetadata() {
