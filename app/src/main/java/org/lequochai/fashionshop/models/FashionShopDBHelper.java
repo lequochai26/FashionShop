@@ -18,9 +18,11 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "FashionShop";
     public static final String TABLE_COOKIE_NAME = "Cookie";
     public static final String TABLE_COOKIE_COOKIEKEY = "cookieKey";
+    public static final String TABLE_COOKIE_COOKIEDOMAIN = "cookieDomain";
     public static final String TABLE_COOKIE_COOKIEVALUE = "cookieValue";
     public static final String TABLE_COOKIE_CREATE = "CREATE TABLE " + TABLE_COOKIE_NAME +  "(" +
             TABLE_COOKIE_COOKIEKEY + " TEXT PRIMARY KEY," +
+            TABLE_COOKIE_COOKIEDOMAIN + " TEXT PRIMARY KEY," +
             TABLE_COOKIE_COOKIEVALUE + "TEXT NOT NULL)";
 
     public static final String TABLE_COOKIE_DROP = "DROP TABLE IF EXISTS " + TABLE_COOKIE_NAME;
@@ -52,7 +54,8 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 
 //        Query
         Cursor cursor = db.query(
-                TABLE_COOKIE_NAME, new String[]{ TABLE_COOKIE_COOKIEKEY, TABLE_COOKIE_COOKIEVALUE }, null, null, null,
+                TABLE_COOKIE_NAME, new String[]{ TABLE_COOKIE_COOKIEKEY, TABLE_COOKIE_COOKIEDOMAIN,
+                        TABLE_COOKIE_COOKIEVALUE }, null, null, null,
                 null, null
         );
 
@@ -64,7 +67,8 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
             result.add(
                     new RestCookie(
                             cursor.getString(0),
-                            cursor.getString(1)
+                            cursor.getString(1),
+                            cursor.getString(2)
                     )
             );
         }
@@ -76,16 +80,17 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public RestCookie getCookie(String cookieKey) {
+    public RestCookie getCookie(String cookieKey, String cookieDomain) {
 //        Get db
         SQLiteDatabase db = this.getWritableDatabase();
 
 //        Query
         Cursor cursor = db.query(
                         TABLE_COOKIE_NAME, new String[]{ TABLE_COOKIE_COOKIEKEY,
+                        TABLE_COOKIE_COOKIEDOMAIN,
                         TABLE_COOKIE_COOKIEVALUE },
-                TABLE_COOKIE_COOKIEKEY + "=?",
-                new String[]{ cookieKey },
+                TABLE_COOKIE_COOKIEKEY + "=? AND " + TABLE_COOKIE_COOKIEDOMAIN + "=?",
+                new String[]{ cookieKey, cookieDomain },
                 null,
                         null, null
                 );
@@ -97,7 +102,8 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
         if (cursor.moveToNext()) {
             target = new RestCookie(
                     cursor.getString(0),
-                    cursor.getString(1)
+                    cursor.getString(1),
+                    cursor.getString(2)
             );
         }
 
@@ -116,6 +122,7 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 //        Create content values
         ContentValues values = new ContentValues();
         values.put(TABLE_COOKIE_COOKIEKEY, cookie.getCookieKey());
+        values.put(TABLE_COOKIE_COOKIEDOMAIN, cookie.getCookieDomain());
         values.put(TABLE_COOKIE_COOKIEVALUE, cookie.getCookieValue());
 
 //        Insert
@@ -134,32 +141,34 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
         values.put(TABLE_COOKIE_COOKIEVALUE, cookie.getCookieValue());
 
 //        Update
-        db.update(TABLE_COOKIE_NAME, values, TABLE_COOKIE_COOKIEKEY + "=?",
-                new String[]{ cookie.getCookieKey() });
+        db.update(TABLE_COOKIE_NAME, values,
+                TABLE_COOKIE_COOKIEKEY + "=? AND " + TABLE_COOKIE_COOKIEDOMAIN + "=?",
+                new String[]{ cookie.getCookieKey(), cookie.getCookieDomain() });
 
 //        Close db
         db.close();
     }
 
-    public void deleteCookie(String cookieKey) {
+    public void deleteCookie(String cookieKey, String cookieDomain) {
 //        Get DB
         SQLiteDatabase db = this.getWritableDatabase();
 
 //        Deleting
-        db.delete(TABLE_COOKIE_NAME, TABLE_COOKIE_COOKIEKEY + "=?",
-                new String[]{ cookieKey });
+        db.delete(TABLE_COOKIE_NAME,
+                TABLE_COOKIE_COOKIEKEY + "=? AND " + TABLE_COOKIE_COOKIEDOMAIN + "=?",
+                new String[]{ cookieKey, cookieDomain });
 
 //        Close db
         db.close();
     }
 
     public void deleteCookie(RestCookie cookie) {
-        deleteCookie(cookie.getCookieKey());
+        deleteCookie(cookie.getCookieKey(), cookie.getCookieDomain());
     }
 
     public void saveCookie(RestCookie cookie) {
 //        Get Target
-        RestCookie target = getCookie(cookie.getCookieKey());
+        RestCookie target = getCookie(cookie.getCookieKey(), cookie.getCookieDomain());
 
 //        Target null case
         if (target == null) {
