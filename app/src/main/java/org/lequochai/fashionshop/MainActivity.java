@@ -8,6 +8,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.lequochai.fashionshop.controllers.Controller;
+import org.lequochai.fashionshop.controllers.MainActivityLoadAllItemsController;
+import org.lequochai.fashionshop.entities.Item;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 //    Fields:
     private ImageView imgAvatar;
@@ -17,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView btnSearch;
     private ImageView btnReload;
     private ListView itemsListView;
+
+    private Controller<Void> loadAllItemsController;
 
 //    Constructors:
     public MainActivity() {
@@ -31,6 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
 //        Get views
         getViews();
+
+//        Controllers initialize
+        initialControllers();
+
+//        Setup
+        setupViews();
+
+//        Load all items
+        loadAllItemsController.execute(null);
     }
 
 //    Setup methods:
@@ -55,5 +72,27 @@ public class MainActivity extends AppCompatActivity {
 
 //        itemsListView
         itemsListView = findViewById(R.id.itemsListView);
+    }
+
+    private void setupViews() {
+//        btnReload
+        btnReload.setOnClickListener(
+                t -> {
+                    loadAllItemsController.execute(null);
+                }
+        );
+    }
+
+    private void initialControllers() {
+        loadAllItemsController = new MainActivityLoadAllItemsController(this);
+    }
+
+//    Methods:
+    public void loadItems(List<Item> items) {
+//        Create adapter
+        ItemsListItemAdapter adapter = new ItemsListItemAdapter(this, items);
+
+//        Set adapter for itemsListView
+        itemsListView.setAdapter(adapter);
     }
 }
