@@ -6,43 +6,17 @@ import java.util.Map;
 
 public class OrderBody {
 
-public static  class User{
-    private String email;
-    private  String fullName;
 
-    public  User(){}
-
-    public User(String email, String fullName) {
-        this.email = email;
-        this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-}
 
    private  String type;
 
    private Number totalPrice;
-   private User orderedBy;
+   private String orderedBy;
    private List<Map<String,Object>> items;
 
    private String paymentMethod;
 
-    public OrderBody(String type, Number totalPrice, User orderedBy, List<Map<String, Object>> items, String paymentMethod) {
+    public OrderBody(String type, Number totalPrice, String orderedBy, List<Map<String, Object>> items, String paymentMethod) {
         this.type = type;
         this.totalPrice = totalPrice;
         this.orderedBy = orderedBy;
@@ -66,11 +40,11 @@ public static  class User{
         this.totalPrice = totalPrice;
     }
 
-    public User getOrderedBy() {
+    public String getOrderedBy() {
         return orderedBy;
     }
 
-    public void setOrderedBy(User orderedBy) {
+    public void setOrderedBy(String orderedBy) {
         this.orderedBy = orderedBy;
     }
 
