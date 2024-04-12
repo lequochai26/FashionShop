@@ -42,7 +42,7 @@ public class LoadAllItemsController extends MainActivityController<Void> {
 
                             @Override
                             public void onFailure(Call<RestfulResponse<List<Item>>> call, Throwable throwable) {
-
+                                throwable.printStackTrace();
                             }
                         }
                 );
