@@ -65,14 +65,6 @@ public class GlobalService {
         this.itemService = itemService;
     }
 
-    public static GlobalService getInstance() {
-        return instance;
-    }
-
-    public static void setInstance(GlobalService instance) {
-        GlobalService.instance = instance;
-    }
-
     public FashionShopDBHelper getDbHelper() {
         return dbHelper;
     }
