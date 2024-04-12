@@ -14,16 +14,17 @@ import java.util.List;
 public class FashionShopDBHelper extends SQLiteOpenHelper {
 //    Static fields:
     public static final String TAG = "SQLite";
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
     public static final String DATABASE_NAME = "FashionShop";
     public static final String TABLE_COOKIE_NAME = "Cookie";
     public static final String TABLE_COOKIE_COOKIEKEY = "cookieKey";
     public static final String TABLE_COOKIE_COOKIEDOMAIN = "cookieDomain";
     public static final String TABLE_COOKIE_COOKIEVALUE = "cookieValue";
     public static final String TABLE_COOKIE_CREATE = "CREATE TABLE " + TABLE_COOKIE_NAME +  "(" +
-            TABLE_COOKIE_COOKIEKEY + " TEXT PRIMARY KEY," +
-            TABLE_COOKIE_COOKIEDOMAIN + " TEXT PRIMARY KEY," +
-            TABLE_COOKIE_COOKIEVALUE + "TEXT NOT NULL)";
+            TABLE_COOKIE_COOKIEKEY + " TEXT," +
+            TABLE_COOKIE_COOKIEDOMAIN + " TEXT," +
+            TABLE_COOKIE_COOKIEVALUE + " TEXT NOT NULL," +
+            "PRIMARY KEY (" + TABLE_COOKIE_COOKIEKEY + "," + TABLE_COOKIE_COOKIEDOMAIN + "))";
 
     public static final String TABLE_COOKIE_DROP = "DROP TABLE IF EXISTS " + TABLE_COOKIE_NAME;
 
