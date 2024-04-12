@@ -17,9 +17,17 @@ public class Item {
             this.name = name;
         }
 
-        public String getId() {
-            return id;
+        @Override
+        public String toString() {
+            return "ItemType{" +
+                    "id='" + id + '\'' +
+                    ", name='" + name + '\'' +
+                    '}';
         }
+
+        public String getId() {
+                return id;
+            }
 
         public void setId(String id) {
             this.id = id;
@@ -44,6 +52,14 @@ public class Item {
         public Brand(String id, String name) {
             this.id = id;
             this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return "Brand{" +
+                    "id='" + id + '\'' +
+                    ", name='" + name + '\'' +
+                    '}';
         }
 
         public String getId() {
@@ -77,7 +93,16 @@ public class Item {
             this.mappings = mappings;
         }
 
-//        Getters / setters:
+//        Methods:
+        @Override
+        public String toString() {
+            return "Metadata{" +
+                    "options=" + options +
+                    ", mappings=" + mappings +
+                    '}';
+        }
+
+        //        Getters / setters:
         public Map<String, List<String>> getOptions() {
             return options;
         }
@@ -128,6 +153,28 @@ public class Item {
         this.images = images;
         this.orders = orders;
         this.metadata = metadata;
+    }
+
+//    Methods:
+
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id='" + id + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", buyPrice=" + buyPrice +
+                ", amount=" + amount +
+                ", gender=" + gender +
+                ", type=" + type +
+                ", brand=" + brand +
+                ", images=" + images +
+                ", orders=" + orders +
+                ", metadata=" + metadata +
+                '}';
     }
 
     //    Getters / setters:
