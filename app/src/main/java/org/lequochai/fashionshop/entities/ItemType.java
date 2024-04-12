@@ -48,7 +48,7 @@ public class ItemType {
     }
 
     public void setItem(List<String> item) {
-        this.items = item;
+        this.items = items;
     }
 
 }
