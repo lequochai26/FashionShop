@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.lequochai.fashionshop.controllers.itemslistviewitem.AddCartItemController;
 import org.lequochai.fashionshop.entities.Item;
 import org.lequochai.fashionshop.services.GlobalService;
 
@@ -67,6 +69,15 @@ public class ItemsListViewItemAdapter extends BaseAdapter {
 //        txtPrice
         TextView txtPrice = convertView.findViewById(R.id.txtPrice);
         txtPrice.setText("" + item.getPrice());
+
+//        btnAddToCart
+        Button btnAddToCart = convertView.findViewById(R.id.btnAddToCart);
+        btnAddToCart.setOnClickListener(
+                t -> {
+                    new AddCartItemController(context)
+                            .execute(item);
+                }
+        );
 
 //        Return convertView
         return convertView;
