@@ -15,6 +15,12 @@ public class ItemType {
 
     }
 
+    public ItemType(String id, String name, List<String> item) {
+        this.id = id;
+        this.name = name;
+        this.item = item;
+    }
+
     public ItemType(String id, String name){
         this.id=id;
         this.name=name;
@@ -44,4 +50,5 @@ public class ItemType {
     public void setItem(List<String> item) {
         this.item = item;
     }
+
 }
