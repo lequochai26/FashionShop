@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import org.lequochai.fashionshop.controllers.Controller;
 import org.lequochai.fashionshop.controllers.mainactivity.LoadAllItemsController;
+import org.lequochai.fashionshop.controllers.mainactivity.LoadItemsByKeywordController;
 import org.lequochai.fashionshop.entities.Item;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView itemsListView;
 
     private Controller<Void> loadAllItemsController;
+    private Controller<String> loadItemsByKeywordController;
 
 //    Constructors:
     public MainActivity() {
@@ -81,10 +83,18 @@ public class MainActivity extends AppCompatActivity {
                     loadAllItemsController.execute(null);
                 }
         );
+
+//        btnSearch
+        btnSearch.setOnClickListener(
+                t -> {
+                    loadItemsByKeywordController.execute(txtKeyword.getText().toString());
+                }
+        );
     }
 
     private void initialControllers() {
         loadAllItemsController = new LoadAllItemsController(this);
+        loadItemsByKeywordController = new LoadItemsByKeywordController(this);
     }
 
 //    Methods:
@@ -94,5 +104,66 @@ public class MainActivity extends AppCompatActivity {
 
 //        Set adapter for itemsListView
         itemsListView.setAdapter(adapter);
+    }
+
+//    Getters / setters:
+    public ImageView getImgAvatar() {
+        return imgAvatar;
+    }
+
+    public void setImgAvatar(ImageView imgAvatar) {
+        this.imgAvatar = imgAvatar;
+    }
+
+    public TextView getTxtFullName() {
+        return txtFullName;
+    }
+
+    public void setTxtFullName(TextView txtFullName) {
+        this.txtFullName = txtFullName;
+    }
+
+    public ImageView getBtnCart() {
+        return btnCart;
+    }
+
+    public void setBtnCart(ImageView btnCart) {
+        this.btnCart = btnCart;
+    }
+
+    public EditText getTxtKeyword() {
+        return txtKeyword;
+    }
+
+    public void setTxtKeyword(EditText txtKeyword) {
+        this.txtKeyword = txtKeyword;
+    }
+
+    public ImageView getBtnSearch() {
+        return btnSearch;
+    }
+
+    public void setBtnSearch(ImageView btnSearch) {
+        this.btnSearch = btnSearch;
+    }
+
+    public ImageView getBtnReload() {
+        return btnReload;
+    }
+
+    public void setBtnReload(ImageView btnReload) {
+        this.btnReload = btnReload;
+    }
+
+    public ListView getItemsListView() {
+        return itemsListView;
+    }
+
+    public void setItemsListView(ListView itemsListView) {
+        this.itemsListView = itemsListView;
+    }
+
+    public Controller<Void> getLoadAllItemsController() {
+        return loadAllItemsController;
     }
 }
