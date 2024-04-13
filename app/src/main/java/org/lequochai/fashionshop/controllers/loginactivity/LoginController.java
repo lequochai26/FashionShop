@@ -66,7 +66,7 @@ public class LoginController extends LoginActivityController<Void> {
                                         view.finish();
                                         GlobalChannel.getInstance()
                                                 .send(LoginController.this, MainActivity.class,
-                                                        "onLogin");
+                                                        MainActivity.MESSAGE_ONLOGIN);
                                     }
                                 }
                             }
