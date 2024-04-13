@@ -68,12 +68,17 @@ public class LoginController extends LoginActivityController<Void> {
                                                 .send(LoginController.this, MainActivity.class,
                                                         MainActivity.MESSAGE_ONLOGIN);
                                     }
+                                    else {
+                                        DialogHelper.showAlertDialog(
+                                                view, body.getCode(), body.getMessage()
+                                        );
+                                    }
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<RestfulResponse<Void>> call, Throwable throwable) {
-                                throwable.printStackTrace();
+                                DialogHelper.showErrorDialog(view, throwable.toString());
                             }
                         }
                 );
