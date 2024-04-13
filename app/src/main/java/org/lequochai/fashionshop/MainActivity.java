@@ -19,10 +19,15 @@ import org.lequochai.fashionshop.controllers.mainactivity.LoadLoggedInUserContro
 import org.lequochai.fashionshop.entities.Item;
 import org.lequochai.fashionshop.entities.User;
 import org.lequochai.fashionshop.services.GlobalService;
+import org.lequochai.fashionshop.utils.GlobalChannel;
+import org.lequochai.fashionshop.utils.Receiver;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Receiver {
+//    Static fields:
+    public static final String RECEIVER_NAME = "mainActivity";
+
 //    Fields:
     private User user;
 
@@ -40,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
 //    Constructors:
     public MainActivity() {
-
+//        Subscribe to global channel
+        GlobalChannel.getInstance()
+                .subscribe(this);
     }
 
 //    Creation method:
@@ -168,7 +175,21 @@ public class MainActivity extends AppCompatActivity {
         lblFullName.setText(user.getFullName());
     }
 
-//    Getters / setters:
+    @Override
+    public void receive(Object from, Object message) {
+        if (message instanceof String) {
+            if (message.equals("onLogin")) {
+                loadLoggedInUserController.execute(null);
+            }
+        }
+    }
+
+    @Override
+    public String getReceiverName() {
+        return RECEIVER_NAME;
+    }
+
+    //    Getters / setters:
     public ImageView getImgAvatar() {
         return imgAvatar;
     }
