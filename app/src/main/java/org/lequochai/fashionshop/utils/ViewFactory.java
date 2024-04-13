@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.R;
+import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.AddController;
 import org.lequochai.fashionshop.controllers.itemslistviewitem.AddCartItemController;
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.entities.Item;
@@ -80,7 +81,9 @@ public class ViewFactory {
 
 //        btnAdd
         ImageView btnAdd = view.findViewById(R.id.btnAdd);
-//        TODO
+        btnAdd.setOnClickListener(
+                t -> new AddController(context).execute(cartItem)
+        );
 
 //        btnDelete
         ImageView btnDelete = view.findViewById(R.id.btnDelete);
