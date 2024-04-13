@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 //        Setup
         setupViews();
 
-//        Load all items
-        loadAllItemsController.execute(null);
+//        Initial
+        init();
     }
 
 //    Setup methods:
@@ -96,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
     private void initialControllers() {
         loadAllItemsController = new LoadAllItemsController(this);
         loadItemsByKeywordController = new LoadItemsByKeywordController(this);
+    }
+
+    private void init() {
+//        Load all items
+        loadAllItemsController.execute(null);
     }
 
 //    Methods:
