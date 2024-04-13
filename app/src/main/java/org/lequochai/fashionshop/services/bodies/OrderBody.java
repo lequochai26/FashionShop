@@ -5,20 +5,61 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderBody {
+//    Inner classes:
+    public static class Item {
+//        Fields:
+        private String id;
+        private int amount;
+        private Map<String, String> metadata;
 
+//        Constructors:
+        public Item() {
+        }
 
+        public Item(String id, int amount, Map<String, String> metadata) {
+            this.id = id;
+            this.amount = amount;
+            this.metadata = metadata;
+        }
 
-   private  String type;
+//        Getters / setters:
+        public String getId() {
+            return id;
+        }
 
-   private Number totalPrice;
-   private String orderedBy;
-   private List<Map<String,Object>> items;
+        public void setId(String id) {
+            this.id = id;
+        }
 
-   private String paymentMethod;
+        public int getAmount() {
+            return amount;
+        }
 
-   public OrderBody(){};
+        public void setAmount(int amount) {
+            this.amount = amount;
+        }
 
-    public OrderBody(String type, Number totalPrice, String orderedBy, List<Map<String, Object>> items, String paymentMethod) {
+        public Map<String, String> getMetadata() {
+            return metadata;
+        }
+
+        public void setMetadata(Map<String, String> metadata) {
+            this.metadata = metadata;
+        }
+    }
+
+//    Fields:
+    private  String type;
+    private Number totalPrice;
+    private String orderedBy;
+    private List<Item> items;
+    private String paymentMethod;
+
+//    Constructors:
+    public OrderBody() {
+    }
+
+    public OrderBody(String type, Number totalPrice, String orderedBy, List<Item> items, String paymentMethod) {
         this.type = type;
         this.totalPrice = totalPrice;
         this.orderedBy = orderedBy;
@@ -26,6 +67,7 @@ public class OrderBody {
         this.paymentMethod = paymentMethod;
     }
 
+//    Getters / setters:
     public String getType() {
         return type;
     }
@@ -50,11 +92,11 @@ public class OrderBody {
         this.orderedBy = orderedBy;
     }
 
-    public List<Map<String, Object>> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Map<String, Object>> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 
