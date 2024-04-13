@@ -27,13 +27,12 @@
             app:srcCompat="@drawable/account" />
 
         <TextView
-            android:id="@+id/txtFullName"
+            android:id="@+id/lblFullName"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="13dp"
             android:layout_marginTop="28dp"
             android:layout_marginBottom="28dp"
-            android:text="Nguyễn Hoàng Khuyến"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
