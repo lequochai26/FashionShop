@@ -62,6 +62,11 @@ public class GlobalService {
     }
 
 //    Methods:
+    public void shutdown() {
+        dbHelper.shutdown();
+    }
+
+//    Getters / setters
     public ItemService getItemService() {
         return itemService;
     }

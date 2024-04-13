@@ -153,7 +153,15 @@ public class MainActivity extends AppCompatActivity implements Receiver {
         startActivity(intent);
     }
 
-//    Methods:
+//    Terminate method:
+    @Override
+    protected void onDestroy() {
+        GlobalService.getInstance(this)
+                .shutdown();
+        super.onDestroy();
+    }
+
+    //    Methods:
     public void loadItems(List<Item> items) {
 //        Create adapter
         ItemsListViewItemAdapter adapter = new ItemsListViewItemAdapter(this, items);

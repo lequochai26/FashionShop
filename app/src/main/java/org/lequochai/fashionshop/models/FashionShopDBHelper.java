@@ -28,6 +28,9 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_COOKIE_DROP = "DROP TABLE IF EXISTS " + TABLE_COOKIE_NAME;
 
+//    Fields:
+    private SQLiteDatabase db;
+
 //    Constructors:
     public FashionShopDBHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -51,7 +54,9 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 
     public List<RestCookie> getAllCookies() {
 //        Get DB
-        SQLiteDatabase db = this.getWritableDatabase();
+        if (db == null) {
+            db = this.getWritableDatabase();
+        }
 
 //        Query
         Cursor cursor = db.query(
@@ -76,14 +81,15 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 
 //        Close cursor and db
         cursor.close();
-        db.close();
 
         return result;
     }
 
     public RestCookie getCookie(String cookieKey, String cookieDomain) {
 //        Get db
-        SQLiteDatabase db = this.getWritableDatabase();
+        if (db == null) {
+            db = this.getWritableDatabase();
+        }
 
 //        Query
         Cursor cursor = db.query(
@@ -110,7 +116,6 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 
 //        Close cursor and db
         cursor.close();
-        db.close();
 
 //        Return target
         return target;
@@ -118,7 +123,9 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 
     public void insertCookie(RestCookie cookie) {
 //        Get DB
-        SQLiteDatabase db = this.getWritableDatabase();
+        if (db == null) {
+            db = this.getWritableDatabase();
+        }
 
 //        Create content values
         ContentValues values = new ContentValues();
@@ -128,14 +135,13 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 
 //        Insert
         db.insert(TABLE_COOKIE_NAME, null, values);
-
-//        Close db
-        db.close();
     }
 
     public void updateCookie(RestCookie cookie) {
 //        Get DB
-        SQLiteDatabase db = this.getWritableDatabase();
+        if (db == null) {
+            db = this.getWritableDatabase();
+        }
 
 //        Create content values
         ContentValues values = new ContentValues();
@@ -145,22 +151,18 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
         db.update(TABLE_COOKIE_NAME, values,
                 TABLE_COOKIE_COOKIEKEY + "=? AND " + TABLE_COOKIE_COOKIEDOMAIN + "=?",
                 new String[]{ cookie.getCookieKey(), cookie.getCookieDomain() });
-
-//        Close db
-        db.close();
     }
 
     public void deleteCookie(String cookieKey, String cookieDomain) {
 //        Get DB
-        SQLiteDatabase db = this.getWritableDatabase();
+        if (db == null) {
+            db = this.getWritableDatabase();
+        }
 
 //        Deleting
         db.delete(TABLE_COOKIE_NAME,
                 TABLE_COOKIE_COOKIEKEY + "=? AND " + TABLE_COOKIE_COOKIEDOMAIN + "=?",
                 new String[]{ cookieKey, cookieDomain });
-
-//        Close db
-        db.close();
     }
 
     public void deleteCookie(RestCookie cookie) {
@@ -178,6 +180,14 @@ public class FashionShopDBHelper extends SQLiteOpenHelper {
 //        Target not null case
         else {
             updateCookie(cookie);
+        }
+    }
+
+    public void shutdown() {
+        if (db != null) {
+            if (db.isOpen()) {
+                db.close();
+            }
         }
     }
 }
