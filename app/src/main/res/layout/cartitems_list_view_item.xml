@@ -34,22 +34,34 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="Giá: 100.000 VNĐ"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
         app:layout_constraintTop_toBottomOf="@+id/lblName" />
 
+    <TextView
+        android:id="@+id/lblMetadata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
+        app:layout_constraintTop_toBottomOf="@+id/lblPrice" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
-        app:layout_constraintTop_toBottomOf="@+id/lblPrice">
+        app:layout_constraintTop_toBottomOf="@+id/lblMetadata">
 
         <ImageView
             android:id="@+id/btnRemove"
@@ -78,10 +90,10 @@
         android:id="@+id/btnDelete"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblPrice"
+        app:layout_constraintTop_toBottomOf="@+id/lblMetadata"
         app:srcCompat="@drawable/delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
