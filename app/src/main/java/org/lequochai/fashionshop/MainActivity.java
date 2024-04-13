@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         imgAvatar = findViewById(R.id.imgAvatar);
 
 //        txtFullName
-        txtFullName = findViewById(R.id.txtFullName);
+        txtFullName = findViewById(R.id.lblFullName);
 
 //        btnCart
         btnCart = findViewById(R.id.btnCart);
