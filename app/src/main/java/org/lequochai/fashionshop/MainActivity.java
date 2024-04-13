@@ -24,6 +24,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 //    Fields:
+    private User user;
+
     private ImageView imgAvatar;
     private TextView lblFullName;
     private ImageView btnCart;
@@ -85,6 +87,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
+//        imgAvatar
+        imgAvatar.setOnClickListener(
+                t -> {
+                    if (user == null) {
+                        showLoginActivity();
+                    }
+                    else {
+//                        TODO
+                    }
+                }
+        );
+
 //        btnReload
         btnReload.setOnClickListener(
                 t -> {
@@ -121,9 +135,14 @@ public class MainActivity extends AppCompatActivity {
         loadLoggedInUserController.execute(null);
     }
 
-    //    Show view methods:
+    //    Show activities methods:
     private void showCartActivity() {
         Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
+    }
+
+    private void showLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -137,6 +156,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadLoggedInUser(User user) {
+//        Assign given user for this activity
+        this.user = user;
+
 //        imgAvatar
         Picasso.get()
                 .load(GlobalService.HOST_HTTP + user.getAvatar().substring(1))
