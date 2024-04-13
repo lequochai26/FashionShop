@@ -92,7 +92,7 @@ public class CartActivity extends AppCompatActivity implements Receiver {
     @Override
     public void receive(Object from, Object message) {
         if (message instanceof String) {
-            if (message.equals("onAdd") || message.equals("onRemove")) {
+            if (message.equals("onAdd") || message.equals("onRemove") || message.equals("onDelete")) {
                 init();
             }
         }
