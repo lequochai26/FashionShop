@@ -1,7 +1,9 @@
 package org.lequochai.fashionshop.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GlobalChannel {
 //    Static fields:
@@ -18,23 +20,21 @@ public class GlobalChannel {
 
     //    Fields:
     private List<Receiver> receivers;
+    private Map<String, Receiver> receiversMap;
 
 //    Constructors:
     private GlobalChannel() {
         receivers = new ArrayList<>();
+        receiversMap = new HashMap<>();
     }
 
 //    Methods:
     public void subscribe(Receiver receiver) {
-        if (receivers.contains(receiver)) {
-            return;
-        }
-
-        receivers.add(receiver);
+        receiversMap.put(receiver.getReceiverName(), receiver);
     }
 
     public void send(Object sender, String receiverName, Object message) {
-        for (Receiver receiver : receivers) {
+        for (Receiver receiver : receiversMap.values()) {
             if (receiver.getReceiverName().equals(receiverName)) {
                 receiver.receive(sender, message);
             }
@@ -42,7 +42,7 @@ public class GlobalChannel {
     }
 
     public void send(Object sender, Class receiverClass, Object message) {
-        for (Receiver receiver : receivers) {
+        for (Receiver receiver : receiversMap.values()) {
             if (receiver.getClass() == receiverClass) {
                 receiver.receive(sender, message);
             }
@@ -50,8 +50,6 @@ public class GlobalChannel {
     }
 
     public void unsubscribe(Receiver receiver) {
-        if (receivers.contains(receiver)) {
-            receivers.remove(receiver);
-        }
+        receiversMap.remove(receiver.getReceiverName());
     }
 }
