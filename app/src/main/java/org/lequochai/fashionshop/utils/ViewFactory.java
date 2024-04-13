@@ -12,7 +12,7 @@ import org.lequochai.fashionshop.R;
 import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.AddController;
 import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.DeleteController;
 import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.RemoveController;
-import org.lequochai.fashionshop.controllers.itemslistviewitem.AddCartItemController;
+import org.lequochai.fashionshop.controllers.mainactivity.itemslistviewitem.AddCartItemController;
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.entities.Item;
 import org.lequochai.fashionshop.services.GlobalService;

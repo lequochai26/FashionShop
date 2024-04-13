@@ -1,4 +1,4 @@
-package org.lequochai.fashionshop.controllers.itemslistviewitem;
+package org.lequochai.fashionshop.controllers.mainactivity.itemslistviewitem;
 
 import android.content.Context;
 import android.widget.Toast;

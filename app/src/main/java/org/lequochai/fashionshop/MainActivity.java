@@ -111,7 +111,13 @@ public class MainActivity extends AppCompatActivity {
         loadAllItemsController.execute(null);
     }
 
-//    Show view methods:
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init();
+    }
+
+    //    Show view methods:
     private void showCartActivity() {
         Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
