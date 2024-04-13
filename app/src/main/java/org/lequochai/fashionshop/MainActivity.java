@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.adapters.ItemsListViewItemAdapter;
 import org.lequochai.fashionshop.controllers.Controller;
+import org.lequochai.fashionshop.controllers.cartactivity.BuyController;
 import org.lequochai.fashionshop.controllers.mainactivity.LoadAllItemsController;
 import org.lequochai.fashionshop.controllers.mainactivity.LoadItemsByKeywordController;
 import org.lequochai.fashionshop.controllers.mainactivity.LoadLoggedInUserController;
@@ -193,6 +194,11 @@ public class MainActivity extends AppCompatActivity implements Receiver {
         if (message instanceof String) {
             if (message.equals("onLogin")) {
                 loadLoggedInUserController.execute(null);
+            }
+
+            if (message.equals(BuyController.GET_MAINACTIVITY_USER_MESSAGE)) {
+                GlobalChannel.getInstance()
+                        .send(this, BuyController.class, user);
             }
         }
     }

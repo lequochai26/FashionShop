@@ -3,11 +3,13 @@ package org.lequochai.fashionshop;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import org.lequochai.fashionshop.adapters.CartItemsListViewItemAdapter;
 import org.lequochai.fashionshop.controllers.Controller;
+import org.lequochai.fashionshop.controllers.cartactivity.BuyController;
 import org.lequochai.fashionshop.controllers.cartactivity.LoadCartController;
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.utils.GlobalChannel;
@@ -22,8 +24,12 @@ public class CartActivity extends AppCompatActivity implements Receiver {
 //    Fields:
     private ImageView btnBack;
     private ListView cartItemsListView;
+    private Button btnBuy;
 
     private Controller<Void> loadCartController;
+    private Controller<List<CartItem>> buyController;
+
+    private List<CartItem> cartItems;
 
 //    Constructors:
     public CartActivity() {
@@ -58,11 +64,17 @@ public class CartActivity extends AppCompatActivity implements Receiver {
 
 //        cartItemsListView
         cartItemsListView = findViewById(R.id.cartItemsListView);
+
+//        btnBuy
+        btnBuy = findViewById(R.id.btnBuy);
     }
 
     private void initialControllers() {
 //        loadCartController
         loadCartController = new LoadCartController(this);
+
+//        buyController
+        buyController = new BuyController(this);
     }
 
     private void setupViews() {
@@ -70,9 +82,14 @@ public class CartActivity extends AppCompatActivity implements Receiver {
         btnBack.setOnClickListener(
                 t -> finish()
         );
+
+//        btnBuy
+        btnBuy.setOnClickListener(
+                t -> buyController.execute(cartItems)
+        );
     }
 
-    private void init() {
+    public void init() {
 //        Load cart
         loadCartController.execute(null);
     }
@@ -104,6 +121,9 @@ public class CartActivity extends AppCompatActivity implements Receiver {
     }
 
     public void showCart(List<CartItem> cartItems) {
+//        Save cartItems
+        this.cartItems = cartItems;
+
 //        Create adapter
         CartItemsListViewItemAdapter adapter = new CartItemsListViewItemAdapter(this, cartItems);
 
