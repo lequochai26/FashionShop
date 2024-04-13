@@ -1,4 +1,4 @@
-package org.lequochai.fashionshop.adapters;
+package org.lequochai.fashionshop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
