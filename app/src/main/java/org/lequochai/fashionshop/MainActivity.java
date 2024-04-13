@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.lequochai.fashionshop.adapters.ItemsListViewItemAdapter;
 import org.lequochai.fashionshop.controllers.Controller;
 import org.lequochai.fashionshop.controllers.mainactivity.LoadAllItemsController;
 import org.lequochai.fashionshop.controllers.mainactivity.LoadItemsByKeywordController;

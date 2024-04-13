@@ -1,4 +1,4 @@
-package org.lequochai.fashionshop;
+package org.lequochai.fashionshop.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.lequochai.fashionshop.R;
 import org.lequochai.fashionshop.controllers.itemslistviewitem.AddCartItemController;
 import org.lequochai.fashionshop.entities.Item;
 import org.lequochai.fashionshop.services.GlobalService;
