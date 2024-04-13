@@ -27,7 +27,6 @@ public class AddCartItemController extends ContextController<Item> {
 //            Create body
             CartPostBody body = new CartPostBody();
             body.setId(param.getId());
-            body.setAmount(param.getAmount());
 
 //            Call API
             GlobalService
