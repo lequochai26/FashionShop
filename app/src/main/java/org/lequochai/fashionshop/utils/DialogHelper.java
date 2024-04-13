@@ -19,6 +19,10 @@ public class DialogHelper {
         showAlertDialog(context, title, message, null);
     }
 
+    public static void showErrorDialog(Context context, String message) {
+        showAlertDialog(context, "Đã có lỗi xảy ra", message);
+    }
+
 //    Constructors:
     private DialogHelper() {
 
