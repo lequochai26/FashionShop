@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements Receiver {
                         showLoginActivity();
                     }
                     else {
-//                        TODO
+                        showUserCentralActivity();
                     }
                 }
         );
@@ -150,6 +150,11 @@ public class MainActivity extends AppCompatActivity implements Receiver {
 
     private void showLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    private void showUserCentralActivity() {
+        Intent intent = new Intent(this, UserCentralActivity.class);
         startActivity(intent);
     }
 
