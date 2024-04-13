@@ -1,45 +1,41 @@
 package org.lequochai.fashionshop.controllers.usercentralactivity;
 
+import org.lequochai.fashionshop.MainActivity;
 import org.lequochai.fashionshop.UserCentralActivity;
 import org.lequochai.fashionshop.entities.User;
-import org.lequochai.fashionshop.response.RestfulResponse;
-import org.lequochai.fashionshop.services.GlobalService;
+import org.lequochai.fashionshop.utils.GlobalChannel;
+import org.lequochai.fashionshop.utils.Receiver;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class LoadLoggedInUserController extends UserCentralActivityController<Void> implements Receiver {
+//    Static fields:
+    public static final String RECEIVER_NAME = "userCentralAcitivityLoadLoggedInUserController";
+    public static final String SEND_MAINACTIVITY_GETUSER =
+            "userCentralAcitivityLoadLoggedInUserControllerGetUser";
 
-public class LoadLoggedInUserController extends UserCentralActivityController<Void> {
 //    Constructors:
     public LoadLoggedInUserController(UserCentralActivity view) {
         super(view);
+
+        GlobalChannel.getInstance()
+                .subscribe(this);
     }
 
 //    Methods:
     @Override
     public void execute(Void param) {
-//        Make request
-        GlobalService.getInstance(view)
-                .getUserService()
-                .getLoggedIn()
-                .enqueue(
-                        new Callback<RestfulResponse<User>>() {
-                            @Override
-                            public void onResponse(Call<RestfulResponse<User>> call, Response<RestfulResponse<User>> response) {
-                                if (response.isSuccessful()) {
-                                    RestfulResponse<User> body = response.body();
+        GlobalChannel.getInstance()
+                .send(this, MainActivity.class, SEND_MAINACTIVITY_GETUSER);
+    }
 
-                                    if (body.isSuccess()) {
-                                        view.loadUser(body.getResult());
-                                    }
-                                }
-                            }
+    @Override
+    public void receive(Object from, Object message) {
+        if (message instanceof User) {
+            view.loadUser((User)message);
+        }
+    }
 
-                            @Override
-                            public void onFailure(Call<RestfulResponse<User>> call, Throwable throwable) {
-                                throwable.printStackTrace();
-                            }
-                        }
-                );
+    @Override
+    public String getReceiverName() {
+        return RECEIVER_NAME;
     }
 }

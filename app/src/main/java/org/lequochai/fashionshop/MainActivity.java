@@ -200,6 +200,15 @@ public class MainActivity extends AppCompatActivity implements Receiver {
                 GlobalChannel.getInstance()
                         .send(this, BuyController.class, user);
             }
+
+            if (message.equals(org.lequochai.fashionshop.controllers.usercentralactivity.LoadLoggedInUserController.SEND_MAINACTIVITY_GETUSER)) {
+                GlobalChannel.getInstance()
+                        .send(
+                                this,
+                                org.lequochai.fashionshop.controllers.usercentralactivity.LoadLoggedInUserController.class,
+                                user
+                        );
+            }
         }
     }
 
