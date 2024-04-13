@@ -10,10 +10,15 @@ import org.lequochai.fashionshop.adapters.CartItemsListViewItemAdapter;
 import org.lequochai.fashionshop.controllers.Controller;
 import org.lequochai.fashionshop.controllers.cartactivity.LoadCartController;
 import org.lequochai.fashionshop.entities.CartItem;
+import org.lequochai.fashionshop.utils.GlobalChannel;
+import org.lequochai.fashionshop.utils.Receiver;
 
 import java.util.List;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements Receiver {
+//    Static fields:
+    public static final String RECEIVER_NAME = "cartActivity";
+
 //    Fields:
     private ImageView btnBack;
     private ListView cartItemsListView;
@@ -22,7 +27,9 @@ public class CartActivity extends AppCompatActivity {
 
 //    Constructors:
     public CartActivity() {
-
+//        Subscribe to GlobalChannel
+        GlobalChannel.getInstance()
+                .subscribe(this);
     }
 
 //    Creation method:
@@ -70,7 +77,32 @@ public class CartActivity extends AppCompatActivity {
         loadCartController.execute(null);
     }
 
-//    Methods:
+//    Terminate methods:
+    @Override
+    protected void onDestroy() {
+//        unsubscribe to GlobalChannel
+        GlobalChannel.getInstance()
+                .unsubscribe(this);
+
+//        Call super's same method
+        super.onDestroy();
+    }
+
+    //    Methods:
+    @Override
+    public void receive(Object from, Object message) {
+        if (message instanceof String) {
+            if (message.equals("onAdd")) {
+                init();
+            }
+        }
+    }
+
+    @Override
+    public String getReceiverName() {
+        return RECEIVER_NAME;
+    }
+
     public void showCart(List<CartItem> cartItems) {
 //        Create adapter
         CartItemsListViewItemAdapter adapter = new CartItemsListViewItemAdapter(this, cartItems);
