@@ -28,6 +28,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements Receiver {
 //    Static fields:
     public static final String RECEIVER_NAME = "mainActivity";
+    public static final String MESSAGE_ONLOGIN = "onLogin";
+    public static final String MESSAGE_ONLOGOUT = "onLogout";
 
 //    Fields:
     private User user;
@@ -192,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements Receiver {
     @Override
     public void receive(Object from, Object message) {
         if (message instanceof String) {
-            if (message.equals("onLogin")) {
+            if (message.equals(MESSAGE_ONLOGIN) || message.equals(MESSAGE_ONLOGOUT)) {
                 loadLoggedInUserController.execute(null);
             }
 

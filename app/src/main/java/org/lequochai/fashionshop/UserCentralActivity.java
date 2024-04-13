@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.controllers.Controller;
 import org.lequochai.fashionshop.controllers.usercentralactivity.LoadLoggedInUserController;
+import org.lequochai.fashionshop.controllers.usercentralactivity.LogoutController;
 import org.lequochai.fashionshop.entities.User;
 import org.lequochai.fashionshop.services.GlobalService;
 
@@ -23,6 +24,7 @@ public class UserCentralActivity extends AppCompatActivity {
     private TextView lblLogout;
 
     private Controller<Void> loadLoggedInUserController;
+    private Controller<Void> logoutController;
 
 //    Constructors:
     public UserCentralActivity() {
@@ -60,12 +62,17 @@ public class UserCentralActivity extends AppCompatActivity {
 
     private void initialControllers() {
         loadLoggedInUserController = new LoadLoggedInUserController(this);
+        logoutController = new LogoutController(this);
 //        TODO
     }
 
     private void setupViews() {
         btnBack.setOnClickListener(
                 t -> finish()
+        );
+
+        lblLogout.setOnClickListener(
+                t -> logoutController.execute(null)
         );
 
 //        TODO
