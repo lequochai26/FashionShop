@@ -182,6 +182,16 @@ public class MainActivity extends AppCompatActivity implements Receiver {
 //        Assign given user for this activity
         this.user = user;
 
+//        User null case
+        if (user == null) {
+//            imgAvatar
+            imgAvatar.setImageResource(R.drawable.account);
+
+//            lblFullName
+            lblFullName.setText("");
+            return;
+        }
+
 //        imgAvatar
         Picasso.get()
                 .load(GlobalService.HOST_HTTP + user.getAvatar().substring(1))

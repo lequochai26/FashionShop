@@ -28,9 +28,7 @@ public class LoadLoggedInUserController extends MainActivityController<Void> {
                                 if (response.isSuccessful()) {
                                     RestfulResponse<User> body = response.body();
 
-                                    if (body.isSuccess()) {
-                                        view.loadLoggedInUser(body.getResult());
-                                    }
+                                    view.loadLoggedInUser(body.getResult());
                                 }
                             }
 
