@@ -48,4 +48,10 @@ public class GlobalChannel {
             }
         }
     }
+
+    public void unsubscribe(Receiver receiver) {
+        if (receivers.contains(receiver)) {
+            receivers.remove(receiver);
+        }
+    }
 }
