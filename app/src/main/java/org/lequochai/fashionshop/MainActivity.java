@@ -2,6 +2,7 @@ package org.lequochai.fashionshop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -91,6 +92,13 @@ public class MainActivity extends AppCompatActivity {
                     loadItemsByKeywordController.execute(txtKeyword.getText().toString());
                 }
         );
+
+//        btnCart
+        btnCart.setOnClickListener(
+                t -> {
+                    showCartActivity();
+                }
+        );
     }
 
     private void initialControllers() {
@@ -101,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
 //        Load all items
         loadAllItemsController.execute(null);
+    }
+
+//    Show view methods:
+    private void showCartActivity() {
+        Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
     }
 
 //    Methods:
