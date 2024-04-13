@@ -55,6 +55,17 @@ public class ViewFactory {
         TextView lblName = view.findViewById(R.id.lblName);
         lblName.setText(cartItem.getItem().getName());
 
+//        lblMetadata
+        TextView lblMetadata = view.findViewById(R.id.lblMetadata);
+        if (cartItem.getMetadata() != null) {
+            String metadata = "";
+            for (String key : cartItem.getMetadata().keySet()) {
+                metadata += key += ": " + cartItem.getMetadata().get(key) + ", ";
+            }
+            metadata = metadata.substring(0, metadata.length()-2);
+            lblMetadata.setText("Phân loại: " + metadata);
+        }
+
 //        lblPrice
         TextView lblPrice = view.findViewById(R.id.lblPrice);
         lblPrice.setText("Giá: " + cartItem.getItem().getPrice());
