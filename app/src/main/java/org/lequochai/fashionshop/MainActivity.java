@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements Receiver {
     public static final String RECEIVER_NAME = "mainActivity";
     public static final String MESSAGE_ONLOGIN = "onLogin";
     public static final String MESSAGE_ONLOGOUT = "onLogout";
+    public static final String REQUEST_GETUSER = "getUser";
 
 //    Fields:
     private User user;
@@ -208,17 +209,10 @@ public class MainActivity extends AppCompatActivity implements Receiver {
                 loadLoggedInUserController.execute(null);
             }
 
-            if (message.equals(BuyController.GET_MAINACTIVITY_USER_MESSAGE)) {
-                GlobalChannel.getInstance()
-                        .send(this, BuyController.class, user);
-            }
-
-            if (message.equals(org.lequochai.fashionshop.controllers.usercentralactivity.LoadLoggedInUserController.SEND_MAINACTIVITY_GETUSER)) {
+            if (message.equals(REQUEST_GETUSER)) {
                 GlobalChannel.getInstance()
                         .send(
-                                this,
-                                org.lequochai.fashionshop.controllers.usercentralactivity.LoadLoggedInUserController.class,
-                                user
+                                this, from.getClass(), user
                         );
             }
         }

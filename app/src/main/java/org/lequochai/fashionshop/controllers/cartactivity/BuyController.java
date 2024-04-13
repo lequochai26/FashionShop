@@ -24,7 +24,6 @@ import retrofit2.Response;
 public class BuyController extends CartActivityController<List<CartItem>> implements Receiver {
 //    Static fields:
     public static final String RECEIVER_NAME = "cartActivityBuyController";
-    public static final String GET_MAINACTIVITY_USER_MESSAGE = "cartActivityBuyControllerGetUser";
 
 //    Fields:
     private User user;
@@ -58,7 +57,7 @@ public class BuyController extends CartActivityController<List<CartItem>> implem
 
 //        Request MainActivity's user through GlobalChannel
         GlobalChannel.getInstance()
-                .send(this, MainActivity.class, GET_MAINACTIVITY_USER_MESSAGE);
+                .send(this, MainActivity.class, MainActivity.REQUEST_GETUSER);
     }
 
     @Override

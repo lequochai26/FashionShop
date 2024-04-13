@@ -9,8 +9,6 @@ import org.lequochai.fashionshop.utils.Receiver;
 public class LoadLoggedInUserController extends UserCentralActivityController<Void> implements Receiver {
 //    Static fields:
     public static final String RECEIVER_NAME = "userCentralAcitivityLoadLoggedInUserController";
-    public static final String SEND_MAINACTIVITY_GETUSER =
-            "userCentralAcitivityLoadLoggedInUserControllerGetUser";
 
 //    Constructors:
     public LoadLoggedInUserController(UserCentralActivity view) {
@@ -24,7 +22,7 @@ public class LoadLoggedInUserController extends UserCentralActivityController<Vo
     @Override
     public void execute(Void param) {
         GlobalChannel.getInstance()
-                .send(this, MainActivity.class, SEND_MAINACTIVITY_GETUSER);
+                .send(this, MainActivity.class, MainActivity.REQUEST_GETUSER);
     }
 
     @Override
