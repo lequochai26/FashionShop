@@ -9,18 +9,23 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.lequochai.fashionshop.adapters.ItemsListViewItemAdapter;
 import org.lequochai.fashionshop.controllers.Controller;
 import org.lequochai.fashionshop.controllers.mainactivity.LoadAllItemsController;
 import org.lequochai.fashionshop.controllers.mainactivity.LoadItemsByKeywordController;
+import org.lequochai.fashionshop.controllers.mainactivity.LoadLoggedInUserController;
 import org.lequochai.fashionshop.entities.Item;
+import org.lequochai.fashionshop.entities.User;
+import org.lequochai.fashionshop.services.GlobalService;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 //    Fields:
     private ImageView imgAvatar;
-    private TextView txtFullName;
+    private TextView lblFullName;
     private ImageView btnCart;
     private EditText txtKeyword;
     private ImageView btnSearch;
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Controller<Void> loadAllItemsController;
     private Controller<String> loadItemsByKeywordController;
+    private Controller<Void> loadLoggedInUserController;
 
 //    Constructors:
     public MainActivity() {
@@ -60,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         imgAvatar = findViewById(R.id.imgAvatar);
 
 //        txtFullName
-        txtFullName = findViewById(R.id.lblFullName);
+        lblFullName = findViewById(R.id.lblFullName);
 
 //        btnCart
         btnCart = findViewById(R.id.btnCart);
@@ -104,17 +110,15 @@ public class MainActivity extends AppCompatActivity {
     private void initialControllers() {
         loadAllItemsController = new LoadAllItemsController(this);
         loadItemsByKeywordController = new LoadItemsByKeywordController(this);
+        loadLoggedInUserController = new LoadLoggedInUserController(this);
     }
 
     private void init() {
 //        Load all items
         loadAllItemsController.execute(null);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        init();
+//        Load logged in user
+        loadLoggedInUserController.execute(null);
     }
 
     //    Show view methods:
@@ -132,6 +136,16 @@ public class MainActivity extends AppCompatActivity {
         itemsListView.setAdapter(adapter);
     }
 
+    public void loadLoggedInUser(User user) {
+//        imgAvatar
+        Picasso.get()
+                .load(GlobalService.HOST_HTTP + user.getAvatar().substring(1))
+                .into(imgAvatar);
+
+//        lblFullName
+        lblFullName.setText(user.getFullName());
+    }
+
 //    Getters / setters:
     public ImageView getImgAvatar() {
         return imgAvatar;
@@ -141,12 +155,12 @@ public class MainActivity extends AppCompatActivity {
         this.imgAvatar = imgAvatar;
     }
 
-    public TextView getTxtFullName() {
-        return txtFullName;
+    public TextView getLblFullName() {
+        return lblFullName;
     }
 
-    public void setTxtFullName(TextView txtFullName) {
-        this.txtFullName = txtFullName;
+    public void setLblFullName(TextView lblFullName) {
+        this.lblFullName = lblFullName;
     }
 
     public ImageView getBtnCart() {
