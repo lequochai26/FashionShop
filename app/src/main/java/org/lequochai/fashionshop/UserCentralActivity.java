@@ -2,6 +2,7 @@ package org.lequochai.fashionshop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,12 +76,22 @@ public class UserCentralActivity extends AppCompatActivity {
                 t -> logoutController.execute(null)
         );
 
+        lblUpdatePersonalInfo.setOnClickListener(
+                t -> showUpdatePersonalInfoActivity()
+        );
+
 //        TODO
     }
 
     private void init() {
 //        Call load logged in user controller
         loadLoggedInUserController.execute(null);
+    }
+
+//    Show activity methods:
+    private void showUpdatePersonalInfoActivity() {
+        Intent intent = new Intent(this, UpdatePersonalInfoActivity.class);
+        startActivity(intent);
     }
 
 //    Methods:
