@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import org.lequochai.fashionshop.R;
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.services.GlobalService;
+import org.lequochai.fashionshop.utils.ViewFactory;
 
 import java.util.List;
 
@@ -54,35 +55,8 @@ private Context context;
 //        Get cart item
         CartItem cartItem = cartItems.get(position);
 
-//        imgAvatar
-        ImageView imgAvatar = convertView.findViewById(R.id.imgAvatar2);
-        Picasso.get()
-                .load(GlobalService.HOST_HTTP + cartItem.getItem().getAvatar().substring(1))
-                .into(imgAvatar);
-
-//        lblName
-        TextView lblName = convertView.findViewById(R.id.lblName);
-        lblName.setText(cartItem.getItem().getName());
-
-//        lblPrice
-        TextView lblPrice = convertView.findViewById(R.id.lblPrice);
-        lblPrice.setText("Giá: " + cartItem.getItem().getPrice());
-
-//        lblAmount
-        TextView lblAmount = convertView.findViewById(R.id.lblAmount);
-        lblAmount.setText(cartItem.getAmount());
-
-//        btnRemove
-        ImageView btnRemove = convertView.findViewById(R.id.btnRemove);
-//        TODO
-
-//        btnAdd
-        ImageView btnAdd = convertView.findViewById(R.id.btnAdd);
-//        TODO
-
-//        btnDelete
-        ImageView btnDelete = convertView.findViewById(R.id.btnDelete);
-//        TODO
+//        Build view
+        ViewFactory.buildCartItemsListItemView(context, convertView, cartItem);
 
 //        Return convertView
         return convertView;

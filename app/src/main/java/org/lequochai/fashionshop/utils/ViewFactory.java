@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.R;
 import org.lequochai.fashionshop.controllers.itemslistviewitem.AddCartItemController;
+import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.entities.Item;
 import org.lequochai.fashionshop.services.GlobalService;
 
@@ -43,8 +44,36 @@ public class ViewFactory {
         );
     }
 
-    public static View buildCartItemsListItemView() {
-        return null;
+    public static void buildCartItemsListItemView(Context context, View view, CartItem cartItem) {
+//        imgAvatar
+        ImageView imgAvatar = view.findViewById(R.id.imgAvatar2);
+        Picasso.get()
+                .load(GlobalService.HOST_HTTP + cartItem.getItem().getAvatar().substring(1))
+                .into(imgAvatar);
+
+//        lblName
+        TextView lblName = view.findViewById(R.id.lblName);
+        lblName.setText(cartItem.getItem().getName());
+
+//        lblPrice
+        TextView lblPrice = view.findViewById(R.id.lblPrice);
+        lblPrice.setText("Giá: " + cartItem.getItem().getPrice());
+
+//        lblAmount
+        TextView lblAmount = view.findViewById(R.id.lblAmount);
+        lblAmount.setText(cartItem.getAmount());
+
+//        btnRemove
+        ImageView btnRemove = view.findViewById(R.id.btnRemove);
+//        TODO
+
+//        btnAdd
+        ImageView btnAdd = view.findViewById(R.id.btnAdd);
+//        TODO
+
+//        btnDelete
+        ImageView btnDelete = view.findViewById(R.id.btnDelete);
+//        TODO
     }
 
 //    Constructors:
