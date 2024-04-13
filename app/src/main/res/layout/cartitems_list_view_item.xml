@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgAvatar2"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_not_found" />
+
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        android:text="Tên sản phẩm"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:text="Giá: 100.000 VNĐ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
+        app:layout_constraintTop_toBottomOf="@+id/lblName" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="19dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/imgAvatar2"
+        app:layout_constraintTop_toBottomOf="@+id/lblPrice">
+
+        <ImageView
+            android:id="@+id/btnRemove"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:src="@tools:sample/avatars"
+            app:srcCompat="@drawable/remove" />
+
+        <TextView
+            android:id="@+id/lblAmount"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="100"
+            android:textAlignment="center" />
+
+        <ImageView
+            android:id="@+id/btnAdd"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:src="@tools:sample/avatars"
+            app:srcCompat="@drawable/add" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblPrice"
+        app:srcCompat="@drawable/delete" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
