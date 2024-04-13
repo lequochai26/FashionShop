@@ -7,7 +7,7 @@ import org.lequochai.fashionshop.controllers.ContextController;
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.response.RestfulResponse;
 import org.lequochai.fashionshop.services.GlobalService;
-import org.lequochai.fashionshop.services.bodies.CartDeleteBody;
+import org.lequochai.fashionshop.services.bodies.CartPutBody;
 import org.lequochai.fashionshop.utils.GlobalChannel;
 
 import java.util.ArrayList;
@@ -27,13 +27,13 @@ public class RemoveController extends ContextController<CartItem> {
     @Override
     public void execute(CartItem param) {
 //        Create body
-        CartDeleteBody body = new CartDeleteBody();
-        CartDeleteBody.Item item = new CartDeleteBody.Item();
+        CartPutBody body = new CartPutBody();
+        CartPutBody.Item item = new CartPutBody.Item();
         item.setId(param.getItem().getId());
         item.setMetadata(param.getMetadata());
         item.setAmount(1);
 
-        List<CartDeleteBody.Item> items = new ArrayList<>();
+        List<CartPutBody.Item> items = new ArrayList<>();
         items.add(item);
 
         body.setItems(items);

@@ -2,7 +2,7 @@ package org.lequochai.fashionshop.services;
 
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.response.RestfulResponse;
-import org.lequochai.fashionshop.services.bodies.CartDeleteBody;
+import org.lequochai.fashionshop.services.bodies.CartPutBody;
 import org.lequochai.fashionshop.services.bodies.CartPostBody;
 
 import java.util.List;
@@ -21,5 +21,5 @@ public interface CartService {
     Call<RestfulResponse<Void>> add(@Body CartPostBody body);
 
     @PUT("/cart")
-    Call<RestfulResponse<Void>> remove(@Body CartDeleteBody body);
+    Call<RestfulResponse<Void>> remove(@Body CartPutBody body);
 }

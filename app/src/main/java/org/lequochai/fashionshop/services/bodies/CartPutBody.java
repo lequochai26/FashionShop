@@ -3,7 +3,7 @@ package org.lequochai.fashionshop.services.bodies;
 import java.util.List;
 import java.util.Map;
 
-public class CartDeleteBody {
+public class CartPutBody {
 //    Inner class:
     public static class Item {
 //        Fields:
@@ -52,10 +52,10 @@ public class CartDeleteBody {
     private List<Item> items;
 
 //    Constructors:
-    public CartDeleteBody() {
+    public CartPutBody() {
     }
 
-    public CartDeleteBody(List<Item> items) {
+    public CartPutBody(List<Item> items) {
         this.items = items;
     }
 
