@@ -63,18 +63,25 @@ public class BuyController extends CartActivityController<List<CartItem>> implem
 
     @Override
     public void receive(Object from, Object message) {
-        if (message instanceof User) {
-            user = (User)message;
-            createOrder(
-                    v -> deleteCart(
-                        p -> {
-                            view.init();
-                            Toast.makeText(view, "Đặt hàng thành công!", Toast.LENGTH_LONG);
-                        },
-                        t -> t.printStackTrace()
-                    ),
+        if (message != null) {
+            if (message instanceof User) {
+                user = (User)message;
+                createOrder(
+                        v -> deleteCart(
+                                p -> {
+                                    view.init();
+                                    Toast.makeText(view, "Đặt hàng thành công!", Toast.LENGTH_LONG);
+                                },
+                                t -> t.printStackTrace()
+                        ),
 
-                    t -> t.printStackTrace()
+                        t -> t.printStackTrace()
+                );
+            }
+        }
+        else {
+            DialogHelper.showAlertDialog(
+                    view, "Chưa đăng nhập", "Vui lòng đăng nhập hoặc đăng ký trước khi đặt hàng!"
             );
         }
     }
