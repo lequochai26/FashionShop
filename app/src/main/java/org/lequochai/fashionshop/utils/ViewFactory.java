@@ -61,7 +61,7 @@ public class ViewFactory {
 
 //        lblAmount
         TextView lblAmount = view.findViewById(R.id.lblAmount);
-        lblAmount.setText(cartItem.getAmount());
+        lblAmount.setText("" + cartItem.getAmount());
 
 //        btnRemove
         ImageView btnRemove = view.findViewById(R.id.btnRemove);
