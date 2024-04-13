@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.R;
 import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.AddController;
+import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.RemoveController;
 import org.lequochai.fashionshop.controllers.itemslistviewitem.AddCartItemController;
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.entities.Item;
@@ -77,7 +78,9 @@ public class ViewFactory {
 
 //        btnRemove
         ImageView btnRemove = view.findViewById(R.id.btnRemove);
-//        TODO
+        btnRemove.setOnClickListener(
+                t -> new RemoveController(context).execute(cartItem)
+        );
 
 //        btnAdd
         ImageView btnAdd = view.findViewById(R.id.btnAdd);
