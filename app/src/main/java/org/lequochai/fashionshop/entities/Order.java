@@ -4,7 +4,16 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
+//    Inner enums:
+    public enum Status {
+        APPROVEMENT_AWAITING,
+        DELIVERING,
+        SUCCESS,
+        PAYMENT_AWAITING,
+        CANCELLED
+    }
 
+//    Inner classes:
     public static  class User{
         private String email;
         private  String fullName;
@@ -32,6 +41,20 @@ public class Order {
             this.fullName = fullName;
         }
     }
+
+//    Static methods:
+    public static String getStatusTitle(Status status) {
+        switch (status) {
+            case SUCCESS: return "Đã hoàn thành";
+            case CANCELLED: return "Đã hủy";
+            case DELIVERING: return "Đang giao";
+            case PAYMENT_AWAITING: return "Đang chờ thanh toán";
+            case APPROVEMENT_AWAITING: return "Đang chờ xác nhận";
+        }
+        return null;
+    }
+
+//    Fields:
     private String id;
     private String type;
     private Date date;
