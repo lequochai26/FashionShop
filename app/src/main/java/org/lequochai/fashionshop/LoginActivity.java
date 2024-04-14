@@ -2,6 +2,7 @@ package org.lequochai.fashionshop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,7 +66,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
         );
 
-//        TODO
+        lblRegister.setOnClickListener(
+            t -> showRegisterActivity()
+        );
+    }
+
+//    Show activity methods:
+    private void showRegisterActivity() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
 //    Getters / setters:
