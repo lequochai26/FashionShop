@@ -41,7 +41,7 @@ public class LoadOrderController extends OrderDetailActivityController<String> {
 
                             @Override
                             public void onFailure(Call<RestfulResponse<Order>> call, Throwable throwable) {
-
+                                DialogHelper.showErrorDialog(view, throwable.toString());
                             }
                         }
                 );
