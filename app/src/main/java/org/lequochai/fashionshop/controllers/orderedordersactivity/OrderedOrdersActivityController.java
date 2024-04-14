@@ -1,11 +1,11 @@
 package org.lequochai.fashionshop.controllers.orderedordersactivity;
 
-import org.lequochai.fashionshop.OrderedOrderActivity;
+import org.lequochai.fashionshop.OrderedOrdersActivity;
 import org.lequochai.fashionshop.controllers.ViewController;
 
-public abstract class OrderedOrdersActivityController<P> extends ViewController<OrderedOrderActivity, P> {
+public abstract class OrderedOrdersActivityController<P> extends ViewController<OrderedOrdersActivity, P> {
 //    Constructors:
-    public OrderedOrdersActivityController(OrderedOrderActivity view) {
+    public OrderedOrdersActivityController(OrderedOrdersActivity view) {
         super(view);
     }
 }

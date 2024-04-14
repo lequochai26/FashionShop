@@ -16,7 +16,7 @@ import org.lequochai.fashionshop.utils.Receiver;
 
 import java.util.List;
 
-public class OrderedOrderActivity extends AppCompatActivity implements Receiver {
+public class OrderedOrdersActivity extends AppCompatActivity implements Receiver {
 //    Static fields:
     public static final String RECEIVER_NAME = "orderedOrdersActivity";
     public static final String MESSAGE_RELOAD_ORDERS = "reloadOrders";
@@ -29,7 +29,7 @@ public class OrderedOrderActivity extends AppCompatActivity implements Receiver 
     private Controller<Void> loadOrderedOrdersController;
 
 //    Constructors:
-    public OrderedOrderActivity() {
+    public OrderedOrdersActivity() {
         GlobalChannel.getInstance()
                 .subscribe(this);
     }
@@ -38,7 +38,7 @@ public class OrderedOrderActivity extends AppCompatActivity implements Receiver 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ordered_order);
+        setContentView(R.layout.activity_ordered_orders);
 
         getViews();
 

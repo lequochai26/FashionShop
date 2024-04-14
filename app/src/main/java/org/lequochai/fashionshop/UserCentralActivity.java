@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.controllers.Controller;
-import org.lequochai.fashionshop.controllers.updatepersonalinfoactivity.UpdateUserPersonalInfoController;
 import org.lequochai.fashionshop.controllers.usercentralactivity.LoadLoggedInUserController;
 import org.lequochai.fashionshop.controllers.usercentralactivity.LogoutController;
 import org.lequochai.fashionshop.entities.User;
@@ -105,7 +104,7 @@ public class UserCentralActivity extends AppCompatActivity implements Receiver {
     }
 
     private void showOrderedOrdersActivity() {
-        Intent intent = new Intent(this, OrderedOrderActivity.class);
+        Intent intent = new Intent(this, OrderedOrdersActivity.class);
         startActivity(intent);
     }
 

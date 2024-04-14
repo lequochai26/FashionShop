@@ -1,6 +1,6 @@
 package org.lequochai.fashionshop.controllers.orderedordersactivity;
 
-import org.lequochai.fashionshop.OrderedOrderActivity;
+import org.lequochai.fashionshop.OrderedOrdersActivity;
 import org.lequochai.fashionshop.entities.Order;
 import org.lequochai.fashionshop.response.RestfulResponse;
 import org.lequochai.fashionshop.services.GlobalService;
@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 public class LoadOrderedOrdersController extends OrderedOrdersActivityController<Void> {
 //    Constructors:
-    public LoadOrderedOrdersController(OrderedOrderActivity view) {
+    public LoadOrderedOrdersController(OrderedOrdersActivity view) {
         super(view);
     }
 

@@ -2,7 +2,7 @@ package org.lequochai.fashionshop.controllers.orderedordersactivity.orderslistvi
 
 import android.content.Context;
 
-import org.lequochai.fashionshop.OrderedOrderActivity;
+import org.lequochai.fashionshop.OrderedOrdersActivity;
 import org.lequochai.fashionshop.controllers.ContextController;
 import org.lequochai.fashionshop.entities.Order;
 import org.lequochai.fashionshop.response.RestfulResponse;
@@ -37,8 +37,8 @@ public class CancelController extends ContextController<Order> {
                                         GlobalChannel.getInstance()
                                                 .send(
                                                         CancelController.this,
-                                                        OrderedOrderActivity.class,
-                                                        OrderedOrderActivity.MESSAGE_RELOAD_ORDERS
+                                                        OrderedOrdersActivity.class,
+                                                        OrderedOrdersActivity.MESSAGE_RELOAD_ORDERS
                                                 );
                                     }
                                     else {
