@@ -22,12 +22,8 @@ public interface OrderService {
     Call<RestfulResponse<List<Order>>> getOrdered();
 
     @POST("/order?method=create")
-    Call<RestfulResponse<Void>> create(@Body OrderBody orderBody);
+    Call<RestfulResponse<Void>> create();
 
     @PUT("/order?method=cancel")
     Call<RestfulResponse<Void>> cancel(@Query("id") String id);
-
-
-
-
 }
