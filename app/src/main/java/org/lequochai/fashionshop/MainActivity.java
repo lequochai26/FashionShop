@@ -20,9 +20,11 @@ import org.lequochai.fashionshop.controllers.mainactivity.LoadLoggedInUserContro
 import org.lequochai.fashionshop.entities.Item;
 import org.lequochai.fashionshop.entities.User;
 import org.lequochai.fashionshop.services.GlobalService;
+import org.lequochai.fashionshop.utils.CallbackMessage;
 import org.lequochai.fashionshop.utils.GlobalChannel;
 import org.lequochai.fashionshop.utils.Receiver;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Receiver {
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements Receiver {
     public static final String MESSAGE_ONLOGIN = "onLogin";
     public static final String MESSAGE_ONLOGOUT = "onLogout";
     public static final String REQUEST_GETUSER = "getUser";
+    public static final String AWAITING_USER_LOADED = "awaitingUserLoaded";
+    public static final String MESSAGE_RELOAD_USER = "reloadUser";
 
 //    Fields:
     private User user;
@@ -47,8 +51,13 @@ public class MainActivity extends AppCompatActivity implements Receiver {
     private Controller<String> loadItemsByKeywordController;
     private Controller<Void> loadLoggedInUserController;
 
+    private List<CallbackMessage<Void>> callbackMessages;
+
 //    Constructors:
     public MainActivity() {
+//        initial callbackMessages
+        callbackMessages = new ArrayList<>();
+
 //        Subscribe to global channel
         GlobalChannel.getInstance()
                 .subscribe(this);
@@ -200,12 +209,31 @@ public class MainActivity extends AppCompatActivity implements Receiver {
 
 //        lblFullName
         lblFullName.setText(user.getFullName());
+
+//        Call callbackMessages
+        if (callbackMessages.size() > 0) {
+            for (int i = 0;i<callbackMessages.size();i++) {
+                CallbackMessage<Void> callbackMessage = callbackMessages.get(i);
+
+                boolean called = false;
+
+                if (callbackMessage.getMessage().equals(AWAITING_USER_LOADED)) {
+                    callbackMessage.call(null);
+                    called = true;
+                }
+
+                if (called) {
+                    callbackMessages.remove(i);
+                    i--;
+                }
+            }
+        }
     }
 
     @Override
     public void receive(Object from, Object message) {
         if (message instanceof String) {
-            if (message.equals(MESSAGE_ONLOGIN) || message.equals(MESSAGE_ONLOGOUT)) {
+            if (message.equals(MESSAGE_ONLOGIN) || message.equals(MESSAGE_ONLOGOUT) || message.equals(MESSAGE_RELOAD_USER)) {
                 loadLoggedInUserController.execute(null);
             }
 
@@ -215,6 +243,10 @@ public class MainActivity extends AppCompatActivity implements Receiver {
                                 this, from.getClass(), user
                         );
             }
+        }
+
+        if (message instanceof CallbackMessage) {
+            callbackMessages.add((CallbackMessage<Void>)message);
         }
     }
 

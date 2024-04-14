@@ -10,12 +10,19 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.controllers.Controller;
+import org.lequochai.fashionshop.controllers.updatepersonalinfoactivity.UpdateUserPersonalInfoController;
 import org.lequochai.fashionshop.controllers.usercentralactivity.LoadLoggedInUserController;
 import org.lequochai.fashionshop.controllers.usercentralactivity.LogoutController;
 import org.lequochai.fashionshop.entities.User;
 import org.lequochai.fashionshop.services.GlobalService;
+import org.lequochai.fashionshop.utils.GlobalChannel;
+import org.lequochai.fashionshop.utils.Receiver;
 
-public class UserCentralActivity extends AppCompatActivity {
+public class UserCentralActivity extends AppCompatActivity implements Receiver {
+//    Static fields:
+    public static final String RECEIVER_NAME = "userCentralActivity";
+    public static final String MESSAGE_RELOAD_USER = "reloadUser";
+
 //    Fields:
     private ImageView btnBack;
     private ImageView imgAvatar;
@@ -29,7 +36,8 @@ public class UserCentralActivity extends AppCompatActivity {
 
 //    Constructors:
     public UserCentralActivity() {
-
+        GlobalChannel.getInstance()
+                .subscribe(this);
     }
 
 //    Creation method:
@@ -101,5 +109,21 @@ public class UserCentralActivity extends AppCompatActivity {
                 .into(imgAvatar);
 
         lblFullName.setText(user.getFullName());
+    }
+
+    @Override
+    public void receive(Object from, Object message) {
+        if (message != null) {
+            if (message instanceof String) {
+                if (message.equals(MESSAGE_RELOAD_USER)) {
+                    loadLoggedInUserController.execute(null);
+                }
+            }
+        }
+    }
+
+    @Override
+    public String getReceiverName() {
+        return RECEIVER_NAME;
     }
 }

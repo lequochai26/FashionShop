@@ -3,12 +3,15 @@ package org.lequochai.fashionshop;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 
 import org.lequochai.fashionshop.R;
+import org.lequochai.fashionshop.controllers.Controller;
+import org.lequochai.fashionshop.controllers.updatepersonalinfoactivity.UpdateUserPersonalInfoController;
 import org.lequochai.fashionshop.entities.User;
 import org.lequochai.fashionshop.utils.DialogHelper;
 import org.lequochai.fashionshop.utils.GlobalChannel;
@@ -24,6 +27,9 @@ public class UpdatePersonalInfoActivity extends AppCompatActivity implements Rec
     private Switch switchGender;
     private EditText txtPhoneNumber;
     private EditText txtAddress;
+    private Button btnUpdate;
+
+    private Controller<Void> updateUserPersonalInfo;
 
     private User user;
 
@@ -55,10 +61,11 @@ public class UpdatePersonalInfoActivity extends AppCompatActivity implements Rec
         switchGender = findViewById(R.id.switchGender);
         txtPhoneNumber = findViewById(R.id.txtPhoneNumber);
         txtAddress = findViewById(R.id.txtAddress);
+        btnUpdate = findViewById(R.id.btnUpdate);
     }
 
     private void initialControllers() {
-
+        updateUserPersonalInfo = new UpdateUserPersonalInfoController(this);
     }
 
     private void setupViews() {
@@ -68,6 +75,10 @@ public class UpdatePersonalInfoActivity extends AppCompatActivity implements Rec
 
         switchGender.setOnCheckedChangeListener(
                 (view, isChecked) -> switchGender.setText(isChecked ? "Nam" : "Nữ")
+        );
+
+        btnUpdate.setOnClickListener(
+                t -> updateUserPersonalInfo.execute(null)
         );
     }
 
@@ -111,5 +122,30 @@ public class UpdatePersonalInfoActivity extends AppCompatActivity implements Rec
 
 //        txtAddress
         txtAddress.setHint("Địa chỉ: " + user.getAddress());
+    }
+
+//    Getters / setters:
+    public ImageView getBtnBack() {
+        return btnBack;
+    }
+
+    public EditText getTxtFullName() {
+        return txtFullName;
+    }
+
+    public Switch getSwitchGender() {
+        return switchGender;
+    }
+
+    public EditText getTxtPhoneNumber() {
+        return txtPhoneNumber;
+    }
+
+    public EditText getTxtAddress() {
+        return txtAddress;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
