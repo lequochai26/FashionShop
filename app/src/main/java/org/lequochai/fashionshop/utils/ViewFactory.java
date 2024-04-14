@@ -141,6 +141,27 @@ public class ViewFactory {
         );
     }
 
+    public static void buildOrderItemsListViewItem(Context context, View view,
+                                                   Order.Item orderItem) {
+//        imgAvatar
+        ImageView imgAvatar = view.findViewById(R.id.imgAvatar4);
+        Picasso.get()
+                .load(GlobalService.HOST_HTTP + orderItem.getAvatar().substring(1))
+                .into(imgAvatar);
+
+//        lblName
+        TextView lblName = view.findViewById(R.id.lblName2);
+        lblName.setText(orderItem.getName());
+
+//        lblAmount
+        TextView lblAmount = view.findViewById(R.id.lblAmount2);
+        lblAmount.setText("Số lượng: " + orderItem.getAmount());
+
+//        lblPrice
+        TextView lblPrice = view.findViewById(R.id.lblPrice2);
+        lblPrice.setText("Giá: " + orderItem.getPrice());
+    }
+
 //    Constructors:
     private ViewFactory() {
 
