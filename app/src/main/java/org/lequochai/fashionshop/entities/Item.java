@@ -102,6 +102,65 @@ public class Item {
                     '}';
         }
 
+        public double getMaxPrice() {
+            double max = (double)mappings.get(0).get("price");
+
+            for (Map<String, Object> mapping : mappings) {
+                double price = (double)mapping.get("price");
+
+                if (price > max) {
+                    max = price;
+                }
+            }
+
+            return max;
+        }
+
+        public double getMinPrice() {
+            double min = (double)mappings.get(0).get("price");
+
+            for (Map<String, Object> mapping : mappings) {
+                double price = (double)mapping.get("price");
+
+                if (price < min) {
+                    min = price;
+                }
+            }
+
+            return min;
+        }
+
+        public double getTotalAmount() {
+            double amount = 0;
+
+            for (Map<String, Object> mapping : mappings) {
+                amount += (double)mapping.get("amount");
+            }
+
+            return amount;
+        }
+
+        public Map<String, Object> searchMapping(Map<String, String> selection) {
+            for (Map<String, Object> mapping : mappings) {
+                boolean match = true;
+
+                for (String key : selection.keySet()) {
+                    if (!mapping.get(key).equals(selection.get(key))) {
+                        match = false;
+                        break;
+                    }
+                }
+
+                if (!match) {
+                    continue;
+                }
+
+                return mapping;
+            }
+
+            return null;
+        }
+
         //        Getters / setters:
         public Map<String, List<String>> getOptions() {
             return options;
