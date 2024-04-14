@@ -8,6 +8,9 @@ import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.lequochai.fashionshop.controllers.Controller;
+import org.lequochai.fashionshop.controllers.registeractivity.RegisterController;
+
 public class RegisterActivity extends AppCompatActivity {
 //    Fields:
     private ImageView btnBack;
@@ -18,6 +21,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText txtAddress;
     private EditText txtPhoneNumber;
     private Button btnRegister;
+
+    private Controller<Void> registerController;
 
 //    Constructors:
     public RegisterActivity() {
@@ -42,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack6);
         txtEmail = findViewById(R.id.txtEmail2);
         txtPassword = findViewById(R.id.txtPassword2);
+        txtFullName = findViewById(R.id.txtFullName2);
         switchGender = findViewById(R.id.switchGender2);
         txtAddress = findViewById(R.id.txtAddress2);
         txtPhoneNumber = findViewById(R.id.txtPhoneNumber2);
@@ -49,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initialControllers() {
-
+        registerController = new RegisterController(this);
     }
 
     private void setupViews() {
@@ -61,8 +67,33 @@ public class RegisterActivity extends AppCompatActivity {
                 (buttonView, isChecked) -> switchGender.setText(isChecked ? "Nam" : "Nữ")
         );
 
-//        TODO
+        btnRegister.setOnClickListener(
+                t -> registerController.execute(null)
+        );
     }
 
-//
+//    Getters / setters:
+    public EditText getTxtEmail() {
+        return txtEmail;
+    }
+
+    public EditText getTxtPassword() {
+        return txtPassword;
+    }
+
+    public EditText getTxtFullName() {
+        return txtFullName;
+    }
+
+    public Switch getSwitchGender() {
+        return switchGender;
+    }
+
+    public EditText getTxtAddress() {
+        return txtAddress;
+    }
+
+    public EditText getTxtPhoneNumber() {
+        return txtPhoneNumber;
+    }
 }
