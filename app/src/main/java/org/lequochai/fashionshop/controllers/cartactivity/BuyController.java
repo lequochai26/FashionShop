@@ -37,10 +37,11 @@ public class BuyController extends CartActivityController<List<CartItem>> {
 
                                     if (body.isSuccess()) {
                                         view.init();
-                                        DialogHelper.showAlertDialog(view, "Đặt hàng thành cong",
-                                                "Đơn hàng của bạn đã được đặt thành công, kiểm " +
-                                                        "tra lịch sử mua hàng đế biết the thông " +
-                                                        "tin nhé!");
+//                                        DialogHelper.showAlertDialog(view, "Đặt hàng thành cong",
+//                                                "Đơn hàng của bạn đã được đặt thành công, kiểm " +
+//                                                        "tra lịch sử mua hàng đế biết the thông " +
+//                                                        "tin nhé!");
+                                        view.showOrderedOrdersActivity();
                                     }
                                     else {
                                         DialogHelper.showAlertDialog(
