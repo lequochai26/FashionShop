@@ -67,9 +67,12 @@ public class ViewFactory {
         if (cartItem.getMetadata() != null) {
             String metadata = "";
             for (String key : cartItem.getMetadata().keySet()) {
-                metadata += key += ": " + cartItem.getMetadata().get(key) + ", ";
+                metadata = metadata.concat(metadata.equals("") ? "" : ", ")
+                        .concat(key)
+                        .concat(": ")
+                        .concat(cartItem.getMetadata().get(key));
             }
-            metadata = metadata.substring(0, metadata.length()-2);
+            metadata = "Phân loại: " + metadata;
             lblMetadata.setText("Phân loại: " + metadata);
         }
 
@@ -166,12 +169,12 @@ public class ViewFactory {
         if (orderItem.getMetadata() != null) {
             String metadata = "";
             for (String key : orderItem.getMetadata().keySet()) {
-                metadata.concat(
-                        metadata.equals("")
-                        ? key + ": " + orderItem.getMetadata().get(key)
-                        : ", " + key + ": " + orderItem.getMetadata().get(key)
-                );
+                metadata = metadata.concat(metadata.equals("") ? "" : ", ")
+                        .concat(key)
+                        .concat(": ")
+                        .concat(orderItem.getMetadata().get(key));
             }
+            metadata = "Phân loại: " + metadata;
             lblMetadata.setText(metadata);
         }
         else {
