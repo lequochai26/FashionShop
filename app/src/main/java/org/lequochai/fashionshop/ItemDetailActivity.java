@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.controllers.Controller;
+import org.lequochai.fashionshop.controllers.itemdetailactivity.AddToCartController;
 import org.lequochai.fashionshop.controllers.itemdetailactivity.LoadItemController;
 import org.lequochai.fashionshop.entities.Item;
 import org.lequochai.fashionshop.services.GlobalService;
@@ -37,6 +38,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     private Button btnAddToCart;
 
     private Controller<String> loadItemController;
+    private Controller<Void> addToCartController;
 
     private String id;
     private Item item;
@@ -78,11 +80,16 @@ public class ItemDetailActivity extends AppCompatActivity {
 
     private void initialControllers() {
         loadItemController = new LoadItemController(this);
+        addToCartController = new AddToCartController(this);
     }
 
     private void setupViews() {
         btnBack.setOnClickListener(
                 t -> finish()
+        );
+
+        btnAddToCart.setOnClickListener(
+                t -> addToCartController.execute(null)
         );
     }
 
@@ -197,11 +204,20 @@ public class ItemDetailActivity extends AppCompatActivity {
 
                     selectionsRadioGroup.addView(selectionRadioButton);
 
-                    if (selectionsRadioGroup.getChildCount() < 1) {
+                    if (selectionsRadioGroup.getChildCount() == 1) {
                         selectionRadioButton.setChecked(true);
                     }
                 }
             }
         }
+    }
+
+//    Getters / setters:
+    public Item getItem() {
+        return item;
+    }
+
+    public Map<String, String> getSelection() {
+        return selection;
     }
 }
