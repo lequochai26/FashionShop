@@ -41,7 +41,12 @@ public class ViewFactory {
 
 //        txtPrice
         TextView txtPrice = view.findViewById(R.id.txtPrice);
-        txtPrice.setText("Giá: " + item.getPrice());
+        if (item.getMetadata() == null) {
+            txtPrice.setText("Giá: " + item.getPrice());
+        }
+        else {
+            txtPrice.setText("Giá: " + item.getMetadata().getMinPrice() + " - " + item.getMetadata().getMaxPrice());
+        }
 
 //        btnAddToCart
         Button btnAddToCart = view.findViewById(R.id.btnAddToCart);
