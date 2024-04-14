@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GlobalService {
 //    Static fields:
     private static GlobalService instance;
-    public static final String HOST = "10.0.2.2";
+    public static final String HOST = "192.168.1.14";
     public static final String PORT = "3000";
     public static final String HOST_HTTP = "http://" + HOST + ":" + PORT + "/";
 
