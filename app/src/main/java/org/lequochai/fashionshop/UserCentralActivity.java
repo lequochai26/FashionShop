@@ -88,7 +88,9 @@ public class UserCentralActivity extends AppCompatActivity implements Receiver {
                 t -> showUpdatePersonalInfoActivity()
         );
 
-//        TODO
+        lblOrderedOrders.setOnClickListener(
+                t -> showOrderedOrdersActivity()
+        );
     }
 
     private void init() {
@@ -99,6 +101,11 @@ public class UserCentralActivity extends AppCompatActivity implements Receiver {
 //    Show activity methods:
     private void showUpdatePersonalInfoActivity() {
         Intent intent = new Intent(this, UpdatePersonalInfoActivity.class);
+        startActivity(intent);
+    }
+
+    private void showOrderedOrdersActivity() {
+        Intent intent = new Intent(this, OrderedOrderActivity.class);
         startActivity(intent);
     }
 
