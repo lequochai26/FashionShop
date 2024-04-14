@@ -9,10 +9,12 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.lequochai.fashionshop.R;
+import org.lequochai.fashionshop.controllers.Controller;
 import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.AddController;
 import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.DeleteController;
 import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.RemoveController;
 import org.lequochai.fashionshop.controllers.mainactivity.itemslistviewitem.AddCartItemController;
+import org.lequochai.fashionshop.controllers.orderedordersactivity.orderslistview.CancelController;
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.entities.Item;
 import org.lequochai.fashionshop.entities.Order;
@@ -101,6 +103,9 @@ public class ViewFactory {
 //        Get order's status
         Order.Status status = Order.Status.valueOf(order.getStatus());
 
+//        Controllers initialize
+        Controller<Order> cancelController = new CancelController(context);
+
 //        lblOrderId
         TextView lblOrderId = view.findViewById(R.id.lblOrderId);
         lblOrderId.setText(
@@ -121,6 +126,9 @@ public class ViewFactory {
         else {
             btnCancel.setEnabled(false);
         }
+        btnCancel.setOnClickListener(
+                t -> cancelController.execute(order)
+        );
 
 //        btnDetail
         Button btnDetail = view.findViewById(R.id.btnDetail);
