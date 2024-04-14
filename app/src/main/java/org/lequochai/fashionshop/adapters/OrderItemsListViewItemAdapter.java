@@ -22,6 +22,7 @@ public class OrderItemsListViewItemAdapter extends BaseAdapter {
     public OrderItemsListViewItemAdapter(Context context, List<Order.Item> orderItems) {
         this.context = context;
         this.orderItems = orderItems;
+        inflater = LayoutInflater.from(context);
     }
 
 //    Methods:
