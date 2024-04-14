@@ -1,6 +1,7 @@
 package org.lequochai.fashionshop.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.lequochai.fashionshop.ItemDetailActivity;
 import org.lequochai.fashionshop.OrderedOrdersActivity;
 import org.lequochai.fashionshop.R;
 import org.lequochai.fashionshop.controllers.Controller;
@@ -47,6 +49,15 @@ public class ViewFactory {
                 t -> {
                     new AddCartItemController(context)
                             .execute(item);
+                }
+        );
+
+//        view
+        view.setOnClickListener(
+                t -> {
+                    Intent intent = new Intent(context, ItemDetailActivity.class);
+                    intent.putExtra("id", item.getId());
+                    context.startActivity(intent);
                 }
         );
     }
