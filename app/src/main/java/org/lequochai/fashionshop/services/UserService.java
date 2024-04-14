@@ -29,6 +29,9 @@ public interface UserService {
     @PUT("/user?method=update")
     Call<RestfulResponse<Void>> update(@Body UserBody userBody);
 
+    @PUT("/user?method=updatePersonalInfo")
+    Call<RestfulResponse<Void>> updatePersonalInfo(@Body UserBody userBody);
+
     @PUT("/user?method=changePassword")
     Call<RestfulResponse<Void>> changePassword(@Body UserBody userBody);
 }
