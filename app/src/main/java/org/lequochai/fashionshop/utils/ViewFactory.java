@@ -84,7 +84,7 @@ public class ViewFactory {
                         .concat(cartItem.getMetadata().get(key));
             }
             metadata = "Phân loại: " + metadata;
-            lblMetadata.setText("Phân loại: " + metadata);
+            lblMetadata.setText(metadata);
         }
 
 //        lblPrice
