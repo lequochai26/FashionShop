@@ -2,6 +2,7 @@ package org.lequochai.fashionshop.entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class Order {
 //    Inner enums:
@@ -42,6 +43,78 @@ public class Order {
         }
     }
 
+    public static class Item {
+//        Fields:
+        private String id;
+        private String name;
+        private int amount;
+        private double price;
+        private Map<String, String> metadata;
+        private String avatar;
+
+//        Constructors:
+        public Item() {
+        }
+
+        public Item(String id, String name, int amount, double price, Map<String, String> metadata, String avatar) {
+            this.id = id;
+            this.name = name;
+            this.amount = amount;
+            this.price = price;
+            this.metadata = metadata;
+            this.avatar = avatar;
+        }
+
+//        Getters / setters:
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAmount() {
+            return amount;
+        }
+
+        public void setAmount(int amount) {
+            this.amount = amount;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+        public Map<String, String> getMetadata() {
+            return metadata;
+        }
+
+        public void setMetadata(Map<String, String> metadata) {
+            this.metadata = metadata;
+        }
+
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
+        }
+    }
+
 //    Static methods:
     public static String getStatusTitle(Status status) {
         switch (status) {
@@ -58,32 +131,30 @@ public class Order {
     private String id;
     private String type;
     private Date date;
-    private Number totalPrince;
-    private String metadata;
+    private double totalPrice;
     private User createdBy;
     private User orderedBy;
-    private List<String> orders;
+    private List<Item> items;
     private String status;
     private String paymentMethod;
 
-    public Order(){
-
+//    Constructors:
+    public Order() {
     }
 
-
-    public Order(String id, String type, Date date, Number totalPrince, String metadata, User createdBy, User orderedBy, List<String> orders, String status, String paymentMethod) {
+    public Order(String id, String type, Date date, double totalPrice, User createdBy, User orderedBy, List<Item> items, String status, String paymentMethod) {
         this.id = id;
         this.type = type;
         this.date = date;
-        this.totalPrince = totalPrince;
-        this.metadata = metadata;
+        this.totalPrice = totalPrice;
         this.createdBy = createdBy;
         this.orderedBy = orderedBy;
-        this.orders = orders;
+        this.items = items;
         this.status = status;
         this.paymentMethod = paymentMethod;
     }
 
+//    Getters / setters:
     public String getId() {
         return id;
     }
@@ -108,20 +179,12 @@ public class Order {
         this.date = date;
     }
 
-    public Number getTotalPrince() {
-        return totalPrince;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalPrince(Number totalPrince) {
-        this.totalPrince = totalPrince;
-    }
-
-    public String getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(String metadata) {
-        this.metadata = metadata;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public User getCreatedBy() {
@@ -140,12 +203,12 @@ public class Order {
         this.orderedBy = orderedBy;
     }
 
-    public List<String> getOrders() {
-        return orders;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setOrders(List<String> orders) {
-        this.orders = orders;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public String getStatus() {
