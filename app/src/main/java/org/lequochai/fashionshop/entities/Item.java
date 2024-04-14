@@ -130,14 +130,14 @@ public class Item {
             return min;
         }
 
-        public double getTotalAmount() {
-            double amount = 0;
+        public int getTotalAmount() {
+            int amount = 0;
 
             for (Map<String, Object> mapping : mappings) {
                 amount += (double)mapping.get("amount");
             }
 
-            return amount;
+            return (int)amount;
         }
 
         public Map<String, Object> searchMapping(Map<String, String> selection) {

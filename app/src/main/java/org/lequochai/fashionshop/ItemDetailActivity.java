@@ -111,7 +111,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         }
 
         lblPrice.setText("Giá: " + mapping.get("price"));
-        lblAmount.setText("Số lượng: " + mapping.get("amount"));
+        lblAmount.setText("Số lượng: " + (int)((double)mapping.get("amount")));
     }
 
 //    Methods:
