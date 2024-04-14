@@ -47,8 +47,15 @@ public class ViewFactory {
         Button btnAddToCart = view.findViewById(R.id.btnAddToCart);
         btnAddToCart.setOnClickListener(
                 t -> {
-                    new AddCartItemController(context)
-                            .execute(item);
+                    if (item.getMetadata() == null) {
+                        new AddCartItemController(context)
+                                .execute(item);
+                    }
+                    else {
+                        Intent intent = new Intent(context, ItemDetailActivity.class);
+                        intent.putExtra("id", item.getId());
+                        context.startActivity(intent);
+                    }
                 }
         );
 
