@@ -76,7 +76,7 @@ public class UpdateUserPersonalInfoController extends UpdatePersonalInfoActivity
 //        Make request
         GlobalService.getInstance(view)
                 .getUserService()
-                .update(body)
+                .updatePersonalInfo(body)
                 .enqueue(
                         new Callback<RestfulResponse<Void>>() {
                             @Override
