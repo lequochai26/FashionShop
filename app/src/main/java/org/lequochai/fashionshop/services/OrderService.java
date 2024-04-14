@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 public interface OrderService {
 
     @GET("/order?method=get")
-    Call<RestfulResponse<List<Order>>> get(@Query("id") String id);
+    Call<RestfulResponse<Order>> get(@Query("id") String id);
 
     @GET("/order?method=getOrdered")
     Call<RestfulResponse<List<Order>>> getOrdered();
