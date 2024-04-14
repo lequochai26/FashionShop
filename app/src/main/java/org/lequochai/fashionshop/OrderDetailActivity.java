@@ -13,6 +13,7 @@ import org.lequochai.fashionshop.controllers.Controller;
 import org.lequochai.fashionshop.controllers.oderdetailactivity.CancelController;
 import org.lequochai.fashionshop.controllers.oderdetailactivity.LoadOrderController;
 import org.lequochai.fashionshop.entities.Order;
+import org.lequochai.fashionshop.utils.DateFormatter;
 
 public class OrderDetailActivity extends AppCompatActivity {
 //    Static fields:
@@ -94,7 +95,7 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         lblOrderId.setText(order.getId());
         lblStatus.setText("Trạng thái: " + Order.getStatusTitle(status));
-        lblDate.setText("Ngày đặt: " + order.getDate().toString());
+        lblDate.setText("Ngày đặt: " + DateFormatter.format(order.getDate()));
         lblTotalPrice.setText("Tổng giá trị: " + order.getTotalPrice());
         orderItemsListView.setAdapter(
                 new OrderItemsListViewItemAdapter(this, order.getItems())

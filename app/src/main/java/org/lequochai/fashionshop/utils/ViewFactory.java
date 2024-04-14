@@ -142,7 +142,7 @@ public class ViewFactory {
 //        lblDate
         TextView lblDate = view.findViewById(R.id.lblDate);
         lblDate.setText(
-                order.getDate().toString()
+                DateFormatter.format(order.getDate())
         );
 
 //        btnCancel
