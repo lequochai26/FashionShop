@@ -77,6 +77,7 @@ public class OrderedOrdersActivity extends AppCompatActivity implements Receiver
     public void showOrderDetailActivity(String id) {
         Intent intent = new Intent(this, OrderDetailActivity.class);
         intent.putExtra("id", id);
+        intent.putExtra(OrderDetailActivity.FROM_ORDERED_ORDERS_ACTIVITY, true);
         startActivity(intent);
     }
 

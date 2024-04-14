@@ -10,10 +10,14 @@ import android.widget.TextView;
 
 import org.lequochai.fashionshop.adapters.OrderItemsListViewItemAdapter;
 import org.lequochai.fashionshop.controllers.Controller;
+import org.lequochai.fashionshop.controllers.oderdetailactivity.CancelController;
 import org.lequochai.fashionshop.controllers.oderdetailactivity.LoadOrderController;
 import org.lequochai.fashionshop.entities.Order;
 
 public class OrderDetailActivity extends AppCompatActivity {
+//    Static fields:
+    public static final String FROM_ORDERED_ORDERS_ACTIVITY = "fromOrderedOrdersActivity";
+
 //    Fields:
     private ImageView btnBack;
     private TextView lblOrderId;
@@ -24,8 +28,10 @@ public class OrderDetailActivity extends AppCompatActivity {
     private Button btnCancel;
 
     private Controller<String> loadOrderController;
+    private Controller<String> cancelController;
 
     private String id;
+    private boolean fromOrderedOrdersActivity;
 
 //    Constructors:
     public OrderDetailActivity() {
@@ -39,6 +45,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_detail);
 
         id = getIntent().getStringExtra("id");
+        fromOrderedOrdersActivity = getIntent().getBooleanExtra(FROM_ORDERED_ORDERS_ACTIVITY,
+                false);
 
         getViews();
 
@@ -62,6 +70,7 @@ public class OrderDetailActivity extends AppCompatActivity {
 
     private void initialControllers() {
         loadOrderController = new LoadOrderController(this);
+        cancelController = new CancelController(this);
     }
 
     private void setupViews() {
@@ -69,11 +78,13 @@ public class OrderDetailActivity extends AppCompatActivity {
                 t -> finish()
         );
 
-//        TODO
+        btnCancel.setOnClickListener(
+            t -> cancelController.execute(id)
+        );
     }
 
 //    Init method:
-    private void init() {
+    public void init() {
         loadOrderController.execute(id);
     }
 
@@ -95,5 +106,10 @@ public class OrderDetailActivity extends AppCompatActivity {
         else {
             btnCancel.setEnabled(false);
         }
+    }
+
+//    Getters / setters:
+    public boolean isFromOrderedOrdersActivity() {
+        return fromOrderedOrdersActivity;
     }
 }
