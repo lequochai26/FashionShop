@@ -98,10 +98,13 @@ public class ViewFactory {
     }
 
     public static void buildOrdersListViewItem(Context context, View view, Order order) {
+//        Get order's status
+        Order.Status status = Order.Status.valueOf(order.getStatus());
+
 //        lblOrderId
         TextView lblOrderId = view.findViewById(R.id.lblOrderId);
         lblOrderId.setText(
-                order.getId() + " ( "  + order.getStatus() + " )"
+                order.getId() + " ( "  + Order.getStatusTitle(status) + " )"
         );
 
 //        lblDate
@@ -112,7 +115,7 @@ public class ViewFactory {
 
 //        btnCancel
         Button btnCancel = view.findViewById(R.id.btnCancel);
-        if (order.getStatus().equals("AWAITING_APPROVEMENT")) {
+        if (status == Order.Status.APPROVEMENT_AWAITING) {
             btnCancel.setEnabled(true);
         }
         else {
