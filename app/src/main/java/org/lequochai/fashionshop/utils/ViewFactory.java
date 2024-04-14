@@ -15,6 +15,7 @@ import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.
 import org.lequochai.fashionshop.controllers.mainactivity.itemslistviewitem.AddCartItemController;
 import org.lequochai.fashionshop.entities.CartItem;
 import org.lequochai.fashionshop.entities.Item;
+import org.lequochai.fashionshop.entities.Order;
 import org.lequochai.fashionshop.services.GlobalService;
 
 public class ViewFactory {
@@ -94,6 +95,33 @@ public class ViewFactory {
         btnDelete.setOnClickListener(
                 t -> new DeleteController(context).execute(cartItem)
         );
+    }
+
+    public static void buildOrdersListViewItem(Context context, View view, Order order) {
+//        lblOrderId
+        TextView lblOrderId = view.findViewById(R.id.lblOrderId);
+        lblOrderId.setText(
+                order.getId() + " ( "  + order.getStatus() + " )"
+        );
+
+//        lblDate
+        TextView lblDate = view.findViewById(R.id.lblDate);
+        lblDate.setText(
+                order.getDate().toString()
+        );
+
+//        btnCancel
+        Button btnCancel = view.findViewById(R.id.btnCancel);
+        if (order.getStatus().equals("AWAITING_APPROVEMENT")) {
+            btnCancel.setEnabled(true);
+        }
+        else {
+            btnCancel.setEnabled(false);
+        }
+
+//        btnDetail
+        Button btnDetail = view.findViewById(R.id.btnDetail);
+//        TODO
     }
 
 //    Constructors:
