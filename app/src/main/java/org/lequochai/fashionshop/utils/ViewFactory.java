@@ -160,6 +160,23 @@ public class ViewFactory {
 //        lblPrice
         TextView lblPrice = view.findViewById(R.id.lblPrice2);
         lblPrice.setText("Giá: " + orderItem.getPrice());
+
+//        lblMetadata
+        TextView lblMetadata = view.findViewById(R.id.lblMetadata2);
+        if (orderItem.getMetadata() != null) {
+            String metadata = "";
+            for (String key : orderItem.getMetadata().keySet()) {
+                metadata.concat(
+                        metadata.equals("")
+                        ? key + ": " + orderItem.getMetadata().get(key)
+                        : ", " + key + ": " + orderItem.getMetadata().get(key)
+                );
+            }
+            lblMetadata.setText(metadata);
+        }
+        else {
+            lblMetadata.setText("");
+        }
     }
 
 //    Constructors:
