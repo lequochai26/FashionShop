@@ -2,6 +2,7 @@ package org.lequochai.fashionshop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -72,6 +73,13 @@ public class OrderedOrdersActivity extends AppCompatActivity implements Receiver
         loadOrderedOrdersController.execute(null);
     }
 
+//    Show activity methods:
+    public void showOrderDetailActivity(String id) {
+        Intent intent = new Intent(this, OrderDetailActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
+
 //    Methods:
     public void loadOrders(List<Order> orders) {
         OrdersListViewItemAdapter adapter = new OrdersListViewItemAdapter(this, orders);
@@ -83,6 +91,10 @@ public class OrderedOrdersActivity extends AppCompatActivity implements Receiver
         if (message != null) {
             if (message.equals(MESSAGE_RELOAD_ORDERS)) {
                 loadOrderedOrdersController.execute(null);
+            }
+
+            if (message instanceof Order) {
+                showOrderDetailActivity(((Order)message).getId());
             }
         }
     }

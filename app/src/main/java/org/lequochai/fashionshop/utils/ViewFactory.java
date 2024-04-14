@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.lequochai.fashionshop.OrderedOrdersActivity;
 import org.lequochai.fashionshop.R;
 import org.lequochai.fashionshop.controllers.Controller;
 import org.lequochai.fashionshop.controllers.cartactivity.cartitemslistviewitem.AddController;
@@ -132,7 +133,12 @@ public class ViewFactory {
 
 //        btnDetail
         Button btnDetail = view.findViewById(R.id.btnDetail);
-//        TODO
+        btnDetail.setOnClickListener(
+                t -> GlobalChannel.getInstance()
+                        .send(
+                                view, OrderedOrdersActivity.class, order
+                        )
+        );
     }
 
 //    Constructors:
