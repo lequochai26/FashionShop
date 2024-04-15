@@ -14,7 +14,7 @@ import java.util.List;
 public class FashionShopDBHelper extends SQLiteOpenHelper {
 //    Static fields:
     public static final String TAG = "SQLite";
-    public static final int VERSION = 2;
+    public static final int VERSION = 3;
     public static final String DATABASE_NAME = "FashionShop";
     public static final String TABLE_COOKIE_NAME = "Cookie";
     public static final String TABLE_COOKIE_COOKIEKEY = "cookieKey";
